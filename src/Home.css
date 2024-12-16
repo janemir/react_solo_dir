@@ -1,0 +1,288 @@
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+.form-container {
+    width: 416px;
+    height: 486px;
+    gap: 16px;
+    display: flex;
+    flex-direction: column;
+    padding: 16px;
+}
+
+.label-create-account {
+    font-family: 'Inter', sans-serif;
+    font-size: 20px;
+    font-weight: 600;
+    line-height: 28px;
+    letter-spacing: -0.005em;
+    text-align: left;
+    text-underline-position: from-font;
+    text-decoration-skip-ink: none;
+    color: #0F172A;
+}
+
+.form-input-group {
+    width: 384px;
+    height: auto; /* "Hug" означает адаптацию по контенту */
+    gap: 6px;
+    display: flex;
+    flex-direction: column; /* Размещает метки и инпуты вертикально */
+    opacity: 1; /* Поменял с 0 на 1, чтобы элементы отображались */
+}
+
+.form-input-group label {
+    font-size: 14px;
+    font-weight: 500;
+    color: #0F172A;
+}
+
+.form-input-group input {
+    width: 100%;
+    height: 40px;
+    padding: 8px;
+    border: 1px solid #E2E8F0;
+    border-radius: 8px;
+    font-size: 16px;
+}
+
+.form-input-group input::placeholder {
+    color: #A0AEC0;
+}
+
+.select-role-group {
+    width: 166px;
+    height: auto; /* Hug: высота адаптируется к содержимому */
+    gap: 6px;
+    display: flex;
+    flex-direction: column;
+    opacity: 1; /* Установил видимость */
+}
+
+.select-role-group label {
+    font-size: 14px;
+    font-weight: 500;
+    color: #0F172A;
+}
+
+.tabs-container {
+    width: 400px;
+    display: flex;
+    flex-direction: column;
+}
+
+.tabs-list {
+    display: flex;
+    justify-content: space-between;
+    gap: 8px;
+}
+
+.tabs-trigger {
+    padding: 8px 16px;
+    font-size: 14px;
+    font-weight: 600;
+    border: 1px solid #E2E8F0;
+    border-radius: 8px;
+    cursor: pointer;
+
+}
+
+.tabs-trigger:hover {
+    background-color: #F1F5F9;
+}
+
+.tabs-container {
+    width: 166px;
+    height: 42px;
+    padding: 5px 0 0 0;
+    gap: 0px;
+    border-radius: 6px 0 0 0;
+    opacity: 1; /* Установлено для видимости */
+    display: flex;
+    flex-direction: column;
+    background-color: #F8FAFC; /* Для примера */
+}
+
+.tabs-list {
+    display: flex;
+    gap: 0px;
+    justify-content: space-between;
+}
+
+.tabs-trigger {
+    flex: 1;
+    padding: 6px 12px;
+    text-align: center;
+    font-size: 14px;
+    font-weight: 600;
+    color: #0F172A;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+
+}
+
+.tabs-trigger:hover {
+    background-color: #ffffff;
+}
+
+.auth-container {
+    width: 173px;
+    height: 24px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.auth-text {
+    font-family: Inter, sans-serif;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 24px;
+    text-align: left;
+}
+
+.auth-link {
+    font-family: Inter, sans-serif;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 24px;
+    text-align: left;
+    text-decoration: none;
+    color: #6366F1;
+    text-underline-position: from-font;
+    text-decoration-skip-ink: none;
+}
+
+.login-form {
+    width: 416px; /* Hug (416px) */
+    height: 320px; /* Hug (320px) */
+    padding: 16px; /* Верхний отступ */
+    gap: 16px; /* Расстояние между элементами */
+    border-radius: 12px 0 0 0;
+    opacity: 1; /* Заменить на 0, если должно быть скрыто */
+    display: flex;
+    flex-direction: column;
+}
+
+.auth-container{
+    width: 216px; /* Hug (416px) */
+    height: 24px;
+}
+
+/* Закрепленный header */
+.post-header {
+    position: fixed;
+    height: 80px;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background-color: #ffffff;
+    display: flex;
+    align-items: center;
+    padding: 0 20px;
+    z-index: 1000;
+}
+
+.tag {
+    display: flex;
+    flex-direction: row;
+}
+
+.post-header-left img{
+    display: flex;
+    height: 20px;
+    margin-left: 336px;
+}
+
+.post-header-right {
+    display: flex;
+    align-items: center;
+    margin-left: 900px;
+    gap: 10px;
+}
+
+/* Основной контейнер */
+.main-container {
+    display: flex;
+    margin: 80px auto; /* Отступ для учета высоты header */
+    max-width: 1200px;
+    padding: 20px;
+    gap: 20px;
+}
+
+/* Фиксированный сайдбар */
+.sidebar {
+    position: sticky;
+    top: 128px; /* Учитывает высоту хедера */
+    width: 208px;
+    height: 872px;
+    background-color: #f1f1f1;
+    border-radius: 8px;
+    padding: 15px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+
+}
+
+.sidebar ul {
+    list-style: none;
+    padding: 0;
+}
+
+.sidebar li {
+    margin-bottom: 10px;
+}
+
+.sidebar a {
+    text-decoration: none;
+    color: #333;
+}
+
+.sidebar a:hover {
+    text-decoration: underline;
+}
+
+/* Центральный контент */
+.content-center {
+    flex: 2;
+}
+
+.post {
+    width: 768px;
+    height: 724px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    margin-bottom: 20px;
+}
+
+.post h2 {
+    margin-top: 0;
+}
+
+/* Правая картинка */
+.content-right {
+
+    width: 208px;
+}
+
+section{
+    width: 736px;
+    height: 432px;
+    background-color: #CBD5E1;
+}
+
+.right-picture {
+    display: flex;
+    margin-top: 200px;
+    width: 208px;
+    height: 140px;
+    border-radius: 8px;
+
+}
+
+
