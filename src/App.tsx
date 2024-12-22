@@ -2,8 +2,8 @@ import { BrowserRouter as Router, Routes, Route, Link, useNavigate } from "react
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { Label } from "@/components/ui/label";
-import Login from "@/login"; // Импорт страницы входа
-import Post from "@/post"; // Импорт страницы постов
+import Login from "@/login";
+import Post from "@/post";
 import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import "./Home.css";
 
