@@ -61,7 +61,16 @@ export default {
   				'accent-foreground': 'hsl(var(--sidebar-accent-foreground))',
   				border: 'hsl(var(--sidebar-border))',
   				ring: 'hsl(var(--sidebar-ring))'
-  			}
+  			},
+			fontFamily: {
+				inter: ['Inter', 'sans-serif'], // Добавили шрифт Inter
+			},
+			fontSize: {
+				h4: ['20px', { lineHeight: '28px', letterSpacing: '-0.005em' }], // Размер текста
+			},
+			fontWeight: {
+				h4: '600', // Толщина текста
+			},
   		}
   	}
   },
