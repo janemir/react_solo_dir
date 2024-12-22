@@ -72,7 +72,7 @@ function Post() {
                                 </div>
                             </div>
                             <h2 className="text-lg font-bold mb-4">Заголовок</h2>
-                            <section className="post-content"></section>
+                            
                             <p className="text-gray-700">
                                 Повседневная практика показывает, что социально-экономическое развитие
                                 способствует подготовке и реализации распределения внутренних резервов и ресурсов.
