@@ -4,22 +4,18 @@ import { Button } from "@/components/ui/button";
 import { Label } from "@/components/ui/label";
 import Login from "@/login";
 import Post from "@/post";
-import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs"
+import PostDetails from "@/PostDetails";
+import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import "./Home.css";
-
 
 function App() {
     return (
         <Router>
             <Routes>
-                <Route
-                    path="/"
-                    element={
-                        <Home />
-                    }
-                />
+                <Route path="/" element={<Home />} />
                 <Route path="/login" element={<Login />} />
                 <Route path="/post" element={<Post />} />
+                <Route path="/post/:postId" element={<PostDetails />} /> {/* Динамический маршрут */}
             </Routes>
         </Router>
     );
