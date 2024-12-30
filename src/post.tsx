@@ -1,4 +1,5 @@
 import { useState } from "react";
+import avatar from './assets/avatar.svg';
 
 const posts = [
     {
@@ -48,7 +49,7 @@ function Post() {
                 </div>
                 <div className="post-header-right flex items-center space-x-4">
                     <p className="text-gray-700">{currentPost.email}</p>
-                    <img src="/src/assets/avatar.svg" alt="Аватар" className="h-10 w-10 rounded-full" />
+                    <img src={avatar} alt="Аватар" /> className="h-10 w-10 rounded-full" />
                 </div>
             </header>
             <div className="main-container flex">
