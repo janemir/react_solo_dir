@@ -4,7 +4,6 @@ import { Button } from "@/components/ui/button";
 import { Label } from "@/components/ui/label";
 import Login from "@/login";
 import Post from "@/post";
-import PostDetails from "@/PostDetails";
 import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import "./Home.css";
 
