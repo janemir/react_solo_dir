@@ -50,7 +50,7 @@ function Post() {
                 <div className="post-header-right flex items-center space-x-4">
                     <p className="text-gray-700">{currentPost.email}</p>
                     <img src={avatar} alt="Аватар" className="h-10 w-10 rounded-full" />
-                    
+
                 </div>
             </header>
             <div className="main-container flex">
@@ -60,19 +60,19 @@ function Post() {
                             <li onClick={handlePostsClick} className="cursor-pointer">
                                 <div className="flex items-center space-x-2">
                                     <img src="/src/assets/newspaper.svg" alt="newspaper" className="h-6" />
-                                    <a href="#item1" className="text-gray-700 hover:text-blue-500">Посты</a>
+                                    <span className="text-gray-700 hover:text-blue-500">Посты</span>
                                 </div>
                             </li>
-                            <li>
+                            <li className="cursor-pointer">
                                 <div className="flex items-center space-x-2">
                                     <img src="/src/assets/phone.svg" alt="phone" className="h-6" />
-                                    <a href="#item2" className="text-gray-700 hover:text-blue-500">Контакты</a>
+                                    <span className="text-gray-700 hover:text-blue-500">Контакты</span>
                                 </div>
                             </li>
-                            <li>
+                            <li className="cursor-pointer">
                                 <div className="flex items-center space-x-2">
                                     <img src="/src/assets/log-out.svg" alt="log-out" className="h-6" />
-                                    <a href="#item3" className="text-gray-700 hover:text-blue-500">Выйти</a>
+                                    <span className="text-gray-700 hover:text-blue-500">Выйти</span>
                                 </div>
                             </li>
                         </ul>
@@ -134,7 +134,7 @@ function Post() {
                                 </div>
                             </div>
                             <h2 className="font-inter text-h4 font-h4 text-left">{post.title}</h2>
-                            <section className="post-content mt-4"></section>
+                            <section className="post-content mt-4"> </section>
                             <p className="text-sm text-gray-600 mt-2">{post.content}</p>
                             {visiblePostButtons === post.id && (
                                 <div className="post-actions-container flex items-center gap-2 w-[313px] h-[40px] mt-4">
