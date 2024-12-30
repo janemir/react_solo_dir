@@ -14,7 +14,6 @@ function App() {
                 <Route path="/" element={<Home />} />
                 <Route path="/login" element={<Login />} />
                 <Route path="/post" element={<Post />} />
-                <Route path="/post/:postId" element={<PostDetails />} /> {/* Динамический маршрут */}
             </Routes>
         </Router>
     );
