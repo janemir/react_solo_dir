@@ -22,20 +22,22 @@ const posts = [
 ];
 
 function Post() {
-    // Состояния
     const [currentPost, setCurrentPost] = useState(posts[0]);
-    const [isTabsVisible, setTabsVisible] = useState(false); // Управление видимостью табса
-    const [visiblePostButtons, setVisiblePostButtons] = useState(null); // ID поста с видимыми кнопками
+    const [isTabsVisible, setTabsVisible] = useState(false);
+    const [visiblePostButtons, setVisiblePostButtons] = useState(null);
+    const [activeTab, setActiveTab] = useState("all"); // Состояние активной вкладки
 
-    // Обработчик клика на ссылку "Посты"
     const handlePostsClick = () => {
         setTabsVisible(!isTabsVisible);
     };
 
-    // Обработчик клика на пост
     const handlePostClick = (post) => {
         setCurrentPost(post);
         setVisiblePostButtons(post.id);
+    };
+
+    const handleTabClick = (tab) => {
+        setActiveTab(tab);
     };
 
     return (
@@ -78,13 +80,42 @@ function Post() {
                     {isTabsVisible && (
                         <div className="mb-4">
                             <div className="tabs w-[307px] h-[40px] p-1 flex items-center border rounded-t-md">
-                                <button className="tab-trigger w-[96px] h-[32px] flex items-center justify-center
-                                whitespace-nowrap px-4 py-2 bg-white hover:bg-slate-100 rounded">Все посты</button>
-                                <button className="tab-trigger w-[100px] h-[32px] flex items-center justify-center
-                                whitespace-nowrap px-4 py-2 bg-white hover:bg-slate-100 rounded">Мои посты</button>
-                                <button className="tab-trigger w-[101px] h-[32px] flex items-center justify-center
-                                whitespace-nowrap px-4 py-2 bg-white hover:bg-slate-100 rounded">Черновики</button>
+                                <button
+                                    onClick={() => handleTabClick("all")}
+                                    className={`tab-trigger w-[96px] h-[32px] flex items-center justify-center
+                                    whitespace-nowrap px-4 py-2 ${
+                                        activeTab === "all" ? "bg-gray-200" : "bg-white hover:bg-slate-100"
+                                    } rounded`}
+                                >
+                                    Все посты
+                                </button>
+                                <button
+                                    onClick={() => handleTabClick("mine")}
+                                    className={`tab-trigger w-[100px] h-[32px] flex items-center justify-center
+                                    whitespace-nowrap px-4 py-2 ${
+                                        activeTab === "mine" ? "bg-gray-200" : "bg-white hover:bg-slate-100"
+                                    } rounded`}
+                                >
+                                    Мои посты
+                                </button>
+                                <button
+                                    onClick={() => handleTabClick("drafts")}
+                                    className={`tab-trigger w-[101px] h-[32px] flex items-center justify-center
+                                    whitespace-nowrap px-4 py-2 ${
+                                        activeTab === "drafts" ? "bg-gray-200" : "bg-white hover:bg-slate-100"
+                                    } rounded`}
+                                >
+                                    Черновики
+                                </button>
                             </div>
+                            {activeTab === "mine" && (
+                                <button
+                                    className="create-post-button mt-4 w-[768px] h-[40px] px-4 py-2 text-white bg-[#0F172A] rounded-tl-md
+                                    focus:opacity-100 opacity-100 hover:bg-gray-800 transition-all duration-200"
+                                >
+                                    Создать пост
+                                </button>
+                            )}
                         </div>
                     )}
                     {posts.map((post) => (
@@ -104,24 +135,16 @@ function Post() {
                             <section className="post-content mt-4"></section>
                             <p className="text-sm text-gray-600 mt-2">{post.content}</p>
                             {visiblePostButtons === post.id && (
-                                <div className="post-actions-container flex items-center gap-2 w-[313px] h-[40px] mt-4 ">
-                                    <button
-                                        className="publish-button whitespace-nowrap flex items-center justify-center w-[167px] h-[40px] px-4 py-2 gap-2 bg-gray-100 text-gray-700
+                                <div className="post-actions-container flex items-center gap-2 w-[313px] h-[40px] mt-4">
+                                    <button className="publish-button whitespace-nowrap flex items-center justify-center w-[167px] h-[40px] px-4 py-2 gap-2 bg-gray-100 text-gray-700
     rounded-tl-md rounded-bl-md hover:bg-[#0F172A] hover:text-[#F1F5F9] focus:bg-[#0F172A]
-    focus:text-[#F1F5F9] transition-all duration-200"
-                                    >
+    focus:text-[#F1F5F9] transition-all duration-200">
                                         Опубликовать пост
                                     </button>
-
-                                    <button
-                                        className="edit-button flex items-center justify-center w-[138px] h-[40px] px-4 py-2 gap-2 bg-gray-100 text-gray-700
-        rounded-tr-md rounded-br-md hover:bg-[#0F172A] hover:text-[#F1F5F9] focus:bg-[#0F172A]
-        focus:text-[#F1F5F9] transition-all duration-200"
-                                    >
+                                    <button className="edit-button w-[138px] h-[40px] bg-gray-100 text-gray-700 rounded-tr-md hover:bg-gray-800">
                                         Редактировать
                                     </button>
                                 </div>
-
                             )}
                             <div className="mt-4">
                                 <img src="/src/assets/icon buttons.svg" alt="icon buttons" className="h-6" />
