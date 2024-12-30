@@ -27,6 +27,7 @@ function Post() {
     const [isTabsVisible, setTabsVisible] = useState(false);
     const [visiblePostButtons, setVisiblePostButtons] = useState(null);
     const [activeTab, setActiveTab] = useState("all"); // Состояние активной вкладки
+    const [isModalOpen, setModalOpen] = useState(false); // Состояние для модального окна
 
     const handlePostsClick = () => {
         setTabsVisible(!isTabsVisible);
@@ -41,6 +42,33 @@ function Post() {
         setActiveTab(tab);
     };
 
+    const handleCreatePostClick = () => {
+        setModalOpen(true); // Открываем модальное окно
+    };
+
+    const handleCloseModal = () => {
+        setModalOpen(false); // Закрываем модальное окно
+    };
+
+    // Закрыть модальное окно при клике на затемненную область
+    const handleModalClick = (e) => {
+        if (e.target === e.currentTarget) {
+            setModalOpen(false);
+        }
+    };
+
+    // Закрытие модального окна при клике на кнопки внутри
+    const handlePublishClick = () => {
+        setModalOpen(false);
+        // Логика для публикации поста
+    };
+
+    const handleDraftClick = () => {
+        setModalOpen(false);
+        // Логика для отправки поста в черновики
+    };
+
+
     return (
         <div>
             <header className="post-header flex justify-between items-center px-4 py-2 bg-gray-100">
@@ -50,7 +78,6 @@ function Post() {
                 <div className="post-header-right flex items-center space-x-4">
                     <p className="text-gray-700">{currentPost.email}</p>
                     <img src={avatar} alt="Аватар" className="h-10 w-10 rounded-full" />
-
                 </div>
             </header>
             <div className="main-container flex">
@@ -113,7 +140,8 @@ function Post() {
                             {activeTab === "mine" && (
                                 <button
                                     className="create-post-button mt-4 w-[768px] h-[40px] px-4 py-2 text-white bg-[#0F172A] rounded-tl-md
-                                    focus:opacity-100 opacity-100 hover:bg-gray-800 transition-all duration-200"
+    focus:opacity-100 opacity-100 hover:bg-gray-800 transition-all duration-200"
+                                    onClick={handleCreatePostClick} // Добавляем обработчик события
                                 >
                                     Создать пост
                                 </button>
@@ -154,12 +182,51 @@ function Post() {
                         </article>
                     ))}
                 </main>
-                <div className="content-right w-64 p-4">
-                    <img src="/src/assets/adv.png" alt="Иконки" className="w-full" />
-                </div>
+                {isModalOpen && (
+                    <div className="modal fixed top-0 left-0 w-full h-full bg-black bg-opacity-50 flex items-center justify-center" onClick={handleModalClick}>
+                        <div className="modal-content bg-white p-6 rounded shadow">
+                            <div className="fixed top-[355px] left-[688px] w-[544px] bg-white rounded-tl-[12px] p-[16px_0_0_0] gap-[16px]">
+                                <h4 className="font-inter text-[20px] font-semibold leading-[28px] tracking-[-0.005em] text-[#0F172A]">Создать пост</h4>
+                                <div className="w-full mt-[16px] gap-[6px]">
+                                    <label className="block font-inter text-[14px] font-medium leading-[20px] text-[#0F172A]">Заголовок</label>
+                                    <input
+                                        type="text"
+                                        placeholder="Введите заголовок"
+                                        className="w-full h-[40px] mt-[6px] px-3 py-2 border border-gray-300 rounded-[6px] text-gray-600 bg-white placeholder-gray-400"
+                                    />
+                                </div>
+                                <button className="mt-[16px] px-4 py-2 bg-[#0F172A] text-white text-[14px] font-medium rounded-[6px] hover:opacity-90">
+                                    Добавить картинку
+                                </button>
+                                <div className="w-full mt-[16px] gap-[6px]">
+                                    <label className="block font-inter text-[14px] font-medium leading-[14px] text-[#0F172A]">Контент</label>
+                                    <input
+                                        placeholder="Введите контент"
+                                        className="w-full h-[80px] mt-[6px] px-3 py-2 border border-gray-300 rounded-[6px] text-gray-600 bg-white placeholder-gray-400"
+                                    />
+                                </div>
+                                <div className="w-full mt-[16px] flex gap-[8px]">
+                                    <button
+                                        className="w-[167px] px-4 py-2 bg-[#E2E8F0] border  text-[#0F172A] text-[14px] font-medium rounded-[6px] hover:bg-[#0F172A] hover:text-white"
+                                        onClick={handlePublishClick}
+                                    >
+                                        Опубликовать пост
+                                    </button>
+                                    <button
+                                        className="w-[196px] px-4 py-2 bg-[#E2E8F0] border  text-[#0F172A] text-[14px] font-medium rounded-[6px] hover:bg-[#0F172A] hover:text-white"
+                                        onClick={handleDraftClick}
+                                    >
+                                        Отправить в черновики
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                )}
             </div>
         </div>
     );
 }
+
 
 export default Post;
