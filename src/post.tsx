@@ -6,7 +6,6 @@ import phone from './assets/phone.svg';
 import logout from './assets/log-out.svg';
 import iconButtons from './assets/icon buttons.svg';
 
-
 const posts = [
     {
         id: 1,
@@ -29,14 +28,15 @@ const posts = [
 ];
 
 function Post() {
+
     const [currentPost, setCurrentPost] = useState(posts[0]);
     const [isTabsVisible, setTabsVisible] = useState(false);
     const [visiblePostButtons, setVisiblePostButtons] = useState(null);
-    const [activeTab, setActiveTab] = useState("all"); // Состояние активной вкладки
-    const [isModalOpen, setModalOpen] = useState(false); // Состояние для модального окна
-    const [isImageModalOpen, setImageModalOpen] = useState(false); // Второе модальное окно
-    const [isEditModalOpen, setEditModalOpen] = useState(false); // Модальное окно редактирования
-    const [isEditImageModalOpen, setEditImageModalOpen] = useState(false); // Модальное окно добавления изображения в редактировании
+    const [activeTab, setActiveTab] = useState("all");
+    const [isModalOpen, setModalOpen] = useState(false);
+    const [isImageModalOpen, setImageModalOpen] = useState(false);
+    const [isEditModalOpen, setEditModalOpen] = useState(false);
+    const [isEditImageModalOpen, setEditImageModalOpen] = useState(false);
 
     const handlePostsClick = () => {
         setTabsVisible(!isTabsVisible);
@@ -52,35 +52,31 @@ function Post() {
     };
 
     const handleCreatePostClick = () => {
-        setModalOpen(true); // Открываем модальное окно
+        setModalOpen(true);
     };
 
     const handleAddImageClick = () => {
-        setModalOpen(false); // Закрываем первое модальное окно
-        setImageModalOpen(true); // Открываем второе модальное окно
+        setModalOpen(false);
+        setImageModalOpen(true);
     };
 
     const handleCloseModal = () => {
-        setModalOpen(false); // Закрываем модальное окно
+        setModalOpen(false);
         setImageModalOpen(false);
     };
 
-    // Закрыть модальное окно при клике на затемненную область
     const handleModalClick = (e) => {
         if (e.target === e.currentTarget) {
             setModalOpen(false);
         }
     };
 
-    // Закрытие модального окна при клике на кнопки внутри
     const handlePublishClick = () => {
         setModalOpen(false);
-        // Логика для публикации поста
     };
 
     const handleDraftClick = () => {
         setModalOpen(false);
-        // Логика для отправки поста в черновики
     };
 
     const handleImageModalClick = (e) => {
@@ -90,12 +86,12 @@ function Post() {
     };
 
     const handleEditPostClick = () => {
-        setEditModalOpen(true); // Открыть модальное окно редактирования
+        setEditModalOpen(true);
     };
 
     const handleAddEditImageClick = () => {
-        setEditModalOpen(false); // Закрыть модальное окно редактирования
-        setEditImageModalOpen(true); // Открыть модальное окно добавления изображения
+        setEditModalOpen(false);
+        setEditImageModalOpen(true);
     };
 
     const handleCloseEditModal = () => {
@@ -187,7 +183,7 @@ function Post() {
                                 <button
                                     className="create-post-button mt-4 w-[768px] h-[40px] px-4 py-2 text-white bg-[#0F172A] rounded-tl-md
     focus:opacity-100 opacity-100 hover:bg-gray-800 transition-all duration-200"
-                                    onClick={handleCreatePostClick} // Добавляем обработчик события
+                                    onClick={handleCreatePostClick}
                                 >
                                     Создать пост
                                 </button>
@@ -232,7 +228,7 @@ function Post() {
                 {isModalOpen && (
                     <div className="modal fixed top-0 left-0 w-full h-full bg-black bg-opacity-50 flex items-center justify-center" onClick={handleModalClick}>
                         <div className="modal-content bg-white p-6 rounded shadow">
-                            <div className="fixed top-[355px] left-[688px] w-[544px] bg-white rounded-tl-[12px] p-[16px_0_0_0] gap-[16px]">
+                            <div className="w-[544px] h-[370px] top-[355px] left-[688px] pt-4 gap-4 rounded-tl-[12px] opacity-0]">
                                 <h4 className="font-inter text-[20px] font-semibold leading-[28px] tracking-[-0.005em] text-[#0F172A]">Создать пост</h4>
                                 <div className="w-full mt-[16px] gap-[6px]">
                                     <label className="block font-inter text-[14px] font-medium leading-[20px] text-[#0F172A]">Заголовок</label>
@@ -278,28 +274,37 @@ function Post() {
                         onClick={handleImageModalClick}
                     >
                         <div className="modal-content bg-white p-6 rounded shadow w-[400px]">
-                            <h2 className="text-xl font-inter mb-4">Добавить картинку</h2>
-                            <div className="upload-section">
-                                <label
-                                    htmlFor="imageUpload"
-                                    className="block text-gray-700 font-medium mb-2"
-                                >
-                                    Загрузите картинку
-                                </label>
+                            <h4 className="font-inter text-[20px] font-semibold leading-[28px] tracking-[-0.005em] text-[#0F172A]">Создать пост</h4>
+                            <div className="w-full mt-[16px] gap-[6px]">
+                                <label className="block font-inter text-[14px] font-medium leading-[20px] text-[#0F172A]">Заголовок</label>
                                 <input
-                                    type="file"
-                                    id="imageUpload"
-                                    className="block w-full border border-gray-300 rounded px-3 py-2"
+                                    type="text"
+                                    placeholder="Введите заголовок"
+                                    className="w-full h-[40px] mt-[6px] px-3 py-2 border border-gray-300 rounded-[6px] text-gray-600 bg-white placeholder-gray-400"
                                 />
                             </div>
                             <section className="post-content mt-3 w-[300px] h-[200px] hover:bg-[#a6aeb8]"> </section>
-
-                            <button
-                                className="save-image-button mt-4 bg-green-500 text-white px-4 py-2 rounded hover:bg-green-600"
-                                onClick={handleCloseModal}
-                            >
-                                Сохранить
-                            </button>
+                            <div className="w-full mt-[16px] gap-[6px]">
+                                <label className="block font-inter text-[14px] font-medium leading-[14px] text-[#0F172A]">Контент</label>
+                                <input
+                                    placeholder="Введите контент"
+                                    className="w-full h-[80px] mt-[6px] px-3 py-2 border border-gray-300 rounded-[6px] text-gray-600 bg-white placeholder-gray-400"
+                                />
+                            </div>
+                            <div className="w-full mt-[16px] flex gap-[8px]">
+                                <button
+                                    className="w-[167px] px-4 py-2 bg-[#E2E8F0] border  text-[#0F172A] text-[14px] font-medium rounded-[6px] hover:bg-[#0F172A] hover:text-white"
+                                    onClick={handleCloseModal}
+                                >
+                                    Опубликовать пост
+                                </button>
+                                <button
+                                    className="w-[196px] px-4 py-2 bg-[#E2E8F0] border  text-[#0F172A] text-[14px] font-medium rounded-[6px] hover:bg-[#0F172A] hover:text-white"
+                                    onClick={handleCloseModal}
+                                >
+                                    Отправить в черновики
+                                </button>
+                            </div>
                         </div>
                     </div>
                 )}
