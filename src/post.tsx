@@ -29,6 +29,9 @@ function Post() {
     const [activeTab, setActiveTab] = useState("all"); // Состояние активной вкладки
     const [isModalOpen, setModalOpen] = useState(false); // Состояние для модального окна
     const [isImageModalOpen, setImageModalOpen] = useState(false); // Второе модальное окно
+    const [isEditModalOpen, setEditModalOpen] = useState(false); // Модальное окно редактирования
+    const [isEditImageModalOpen, setEditImageModalOpen] = useState(false); // Модальное окно добавления изображения в редактировании
+
     const handlePostsClick = () => {
         setTabsVisible(!isTabsVisible);
     };
@@ -80,6 +83,31 @@ function Post() {
         }
     };
 
+    const handleEditPostClick = () => {
+        setEditModalOpen(true); // Открыть модальное окно редактирования
+    };
+
+    const handleAddEditImageClick = () => {
+        setEditModalOpen(false); // Закрыть модальное окно редактирования
+        setEditImageModalOpen(true); // Открыть модальное окно добавления изображения
+    };
+
+    const handleCloseEditModal = () => {
+        setEditModalOpen(false);
+        setEditImageModalOpen(false);
+    };
+
+    const handleEditModalClick = (e) => {
+        if (e.target === e.currentTarget) {
+            setEditModalOpen(false);
+        }
+    };
+
+    const handleEditImageModalClick = (e) => {
+        if (e.target === e.currentTarget) {
+            setEditImageModalOpen(false);
+        }
+    };
 
     return (
         <div>
@@ -183,13 +211,14 @@ function Post() {
     focus:text-[#F1F5F9] transition-all duration-200">
                                         Опубликовать пост
                                     </button>
-                                    <button className="edit-button w-[138px] h-[40px] bg-gray-100 text-gray-700 rounded-tr-md hover:bg-gray-800">
+                                    <button className="edit-button w-[138px] h-[40px] bg-gray-100 text-gray-700 rounded-tr-md hover:bg-gray-800"
+                                            onClick={handleEditPostClick}>
                                         Редактировать
                                     </button>
                                 </div>
                             )}
                             <div className="mt-4">
-                                <img src="/src/assets/icon buttons.svg" alt="icon buttons" className="h-6" />
+                                <img src="/src/assets/icon buttons.svg" alt="icon buttons" className="h-6"/>
                             </div>
                         </article>
                     ))}
@@ -243,7 +272,7 @@ function Post() {
                         onClick={handleImageModalClick}
                     >
                         <div className="modal-content bg-white p-6 rounded shadow w-[400px]">
-                            <h2 className="text-xl font-semibold mb-4">Добавить картинку</h2>
+                            <h2 className="text-xl font-inter mb-4">Добавить картинку</h2>
                             <div className="upload-section">
                                 <label
                                     htmlFor="imageUpload"
@@ -257,11 +286,55 @@ function Post() {
                                     className="block w-full border border-gray-300 rounded px-3 py-2"
                                 />
                             </div>
+                            <section className="post-content mt-3 w-[300px] h-[200px] hover:bg-[#a6aeb8]"> </section>
+
                             <button
                                 className="save-image-button mt-4 bg-green-500 text-white px-4 py-2 rounded hover:bg-green-600"
                                 onClick={handleCloseModal}
                             >
                                 Сохранить
+                            </button>
+                        </div>
+                    </div>
+                )}
+                {isEditModalOpen && (
+                    <div
+                        className="modal fixed top-0 left-0 w-full h-full bg-black bg-opacity-50 flex items-center justify-center"
+                        onClick={handleEditModalClick}
+                    >
+                        <div className="modal-content bg-white p-6 rounded shadow">
+                            <h4 className="font-inter text-[20px] font-semibold leading-[28px] text-[#0F172A]">Редактировать пост</h4>
+                            <input
+                                type="text"
+                                placeholder="Введите новый заголовок"
+                                className="w-full border border-gray-300 rounded p-2 mt-4"
+                            />
+                            <button
+                                onClick={handleAddEditImageClick}
+                                className="mt-4 bg-blue-500 text-white py-2 px-4 rounded"
+                            >
+                                Добавить картинку
+                            </button>
+                        </div>
+                    </div>
+                )}
+
+                {isEditImageModalOpen && (
+                    <div
+                        className="modal fixed top-0 left-0 w-full h-full bg-black bg-opacity-50 flex items-center justify-center"
+                        onClick={handleEditImageModalClick}
+                    >
+                        <div className="modal-content bg-white p-6 rounded shadow">
+                            <h4 className="font-inter text-[20px] font-semibold leading-[28px] text-[#0F172A]">Добавить картинку</h4>
+                            <input
+                                type="file"
+                                className="w-full border border-gray-300 rounded p-2 mt-4"
+                            />
+                            <button
+                                onClick={handleCloseEditModal}
+                                className="mt-4 bg-blue-500 text-white py-2 px-4 rounded"
+                            >
+                                Закрыть
                             </button>
                         </div>
                     </div>
