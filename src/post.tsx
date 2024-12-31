@@ -28,7 +28,7 @@ function Post() {
     const [visiblePostButtons, setVisiblePostButtons] = useState(null);
     const [activeTab, setActiveTab] = useState("all"); // Состояние активной вкладки
     const [isModalOpen, setModalOpen] = useState(false); // Состояние для модального окна
-
+    const [isImageModalOpen, setImageModalOpen] = useState(false); // Второе модальное окно
     const handlePostsClick = () => {
         setTabsVisible(!isTabsVisible);
     };
@@ -46,8 +46,14 @@ function Post() {
         setModalOpen(true); // Открываем модальное окно
     };
 
+    const handleAddImageClick = () => {
+        setModalOpen(false); // Закрываем первое модальное окно
+        setImageModalOpen(true); // Открываем второе модальное окно
+    };
+
     const handleCloseModal = () => {
         setModalOpen(false); // Закрываем модальное окно
+        setImageModalOpen(false);
     };
 
     // Закрыть модальное окно при клике на затемненную область
@@ -66,6 +72,12 @@ function Post() {
     const handleDraftClick = () => {
         setModalOpen(false);
         // Логика для отправки поста в черновики
+    };
+
+    const handleImageModalClick = (e) => {
+        if (e.target === e.currentTarget) {
+            setImageModalOpen(false);
+        }
     };
 
 
@@ -195,7 +207,8 @@ function Post() {
                                         className="w-full h-[40px] mt-[6px] px-3 py-2 border border-gray-300 rounded-[6px] text-gray-600 bg-white placeholder-gray-400"
                                     />
                                 </div>
-                                <button className="mt-[16px] px-4 py-2 bg-[#0F172A] text-white text-[14px] font-medium rounded-[6px] hover:opacity-90">
+                                <button className="mt-[16px] px-4 py-2 bg-[#0F172A] text-white text-[14px] font-medium rounded-[6px] hover:opacity-90"
+                                    onClick={handleAddImageClick}>
                                     Добавить картинку
                                 </button>
                                 <div className="w-full mt-[16px] gap-[6px]">
@@ -220,6 +233,36 @@ function Post() {
                                     </button>
                                 </div>
                             </div>
+                        </div>
+                    </div>
+                )}
+                {/* Второе модальное окно */}
+                {isImageModalOpen && (
+                    <div
+                        className="modal fixed top-0 left-0 w-full h-full bg-black bg-opacity-50 flex items-center justify-center"
+                        onClick={handleImageModalClick}
+                    >
+                        <div className="modal-content bg-white p-6 rounded shadow w-[400px]">
+                            <h2 className="text-xl font-semibold mb-4">Добавить картинку</h2>
+                            <div className="upload-section">
+                                <label
+                                    htmlFor="imageUpload"
+                                    className="block text-gray-700 font-medium mb-2"
+                                >
+                                    Загрузите картинку
+                                </label>
+                                <input
+                                    type="file"
+                                    id="imageUpload"
+                                    className="block w-full border border-gray-300 rounded px-3 py-2"
+                                />
+                            </div>
+                            <button
+                                className="save-image-button mt-4 bg-green-500 text-white px-4 py-2 rounded hover:bg-green-600"
+                                onClick={handleCloseModal}
+                            >
+                                Сохранить
+                            </button>
                         </div>
                     </div>
                 )}
