@@ -1,5 +1,11 @@
 import { useState } from "react";
 import avatar from './assets/avatar.svg';
+import logo from './assets/logo.svg';
+import newspaper from './assets/newspaper.svg';
+import phone from './assets/phone.svg';
+import logout from './assets/log-out.svg';
+import iconButtons from './assets/icon buttons.svg';
+
 
 const posts = [
     {
@@ -113,7 +119,7 @@ function Post() {
         <div>
             <header className="post-header flex justify-between items-center px-4 py-2 bg-gray-100">
                 <div className="post-header-left">
-                    <img src="/src/assets/logo.svg" alt="Логотип" className="h-10" />
+                    <img src={logo} alt="Логотип" className="h-10" />
                 </div>
                 <div className="post-header-right flex items-center space-x-4">
                     <p className="text-gray-700">{currentPost.email}</p>
@@ -126,19 +132,19 @@ function Post() {
                         <ul className="space-y-4">
                             <li onClick={handlePostsClick} className="cursor-pointer">
                                 <div className="flex items-center space-x-2">
-                                    <img src="/src/assets/newspaper.svg" alt="newspaper" className="h-6" />
+                                    <img src={newspaper} alt="newspaper" className="h-6" />
                                     <span className="text-gray-700 hover:text-blue-500">Посты</span>
                                 </div>
                             </li>
                             <li className="cursor-pointer">
                                 <div className="flex items-center space-x-2">
-                                    <img src="/src/assets/phone.svg" alt="phone" className="h-6" />
+                                    <img src={phone} alt="phone" className="h-6" />
                                     <span className="text-gray-700 hover:text-blue-500">Контакты</span>
                                 </div>
                             </li>
                             <li className="cursor-pointer">
                                 <div className="flex items-center space-x-2">
-                                    <img src="/src/assets/log-out.svg" alt="log-out" className="h-6" />
+                                    <img src={logout} alt="log-out" className="h-6" />
                                     <span className="text-gray-700 hover:text-blue-500">Выйти</span>
                                 </div>
                             </li>
@@ -195,7 +201,7 @@ function Post() {
                             onClick={() => handlePostClick(post)}
                         >
                             <div className="tag flex items-center space-x-4">
-                                <img src="/src/assets/avatar.svg" alt="Аватар" className="h-10 w-10 rounded-full" />
+                                <img src={avatar} alt="Аватар" className="h-10 w-10 rounded-full" />
                                 <div>
                                     <p className="text-gray-700">{post.email}</p>
                                     <p className="text-gray-500 text-sm">{post.date}</p>
@@ -218,7 +224,7 @@ function Post() {
                                 </div>
                             )}
                             <div className="mt-4">
-                                <img src="/src/assets/icon buttons.svg" alt="icon buttons" className="h-6"/>
+                                <img src={iconButtons} alt="icon buttons" className="h-6"/>
                             </div>
                         </article>
                     ))}
