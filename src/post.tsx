@@ -1,10 +1,12 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import avatar from './assets/avatar.svg';
 import logo from './assets/logo.svg';
 import newspaper from './assets/newspaper.svg';
 import phone from './assets/phone.svg';
 import logout from './assets/log-out.svg';
 import iconButtons from './assets/icon buttons.svg';
+import trash from './assets/trash.svg';
+import upload from './assets/upload.svg';
 
 type Post = {
     id: number;
@@ -247,9 +249,12 @@ function Post() {
                                         className="w-full h-[40px] mt-[6px] px-3 py-2 border border-gray-300 rounded-[6px] text-gray-600 bg-white placeholder-gray-400"
                                     />
                                 </div>
-                                <button className="mt-[16px] px-4 py-2 bg-[#0F172A] text-white text-[14px] font-medium rounded-[6px] hover:opacity-90"
-                                    onClick={handleAddImageClick}>
-                                    Добавить картинку
+                                <button
+                                    className="mt-[16px] px-4 py-2 bg-[#0F172A] text-white text-[14px] font-medium rounded-[6px] hover:opacity-90 flex items-center space-x-2"
+                                    onClick={handleAddImageClick}
+                                >
+                                    <img src={upload} alt="Upload" className="w-4 h-4" />
+                                    <span>Добавить картинку</span>
                                 </button>
                                 <div className="w-full mt-[16px] gap-[6px]">
                                     <label className="block font-inter text-[14px] font-medium leading-[14px] text-[#0F172A]">Контент</label>
@@ -292,7 +297,13 @@ function Post() {
                                     className="w-full h-[40px] mt-[6px] px-3 py-2 border border-gray-300 rounded-[6px] text-gray-600 bg-white placeholder-gray-400"
                                 />
                             </div>
-                            <section className="post-content mt-3 w-[300px] h-[200px] hover:bg-[#a6aeb8]"> </section>
+                            <section className="post-content relative mt-3 w-[300px] h-[200px] hover:bg-[#a6aeb8] group">
+                                <img
+                                    src={trash}
+                                    alt="Delete"
+                                    className="trash-icon absolute top-2 right-2 hidden group-hover:block w-6 h-6 cursor-pointer"
+                                />
+                            </section>
                             <div className="w-full mt-[16px] gap-[6px]">
                                 <label className="block font-inter text-[14px] font-medium leading-[14px] text-[#0F172A]">Контент</label>
                                 <input
@@ -317,6 +328,7 @@ function Post() {
                         </div>
                     </div>
                 )}
+
                 {isEditModalOpen && (
                     <div className="modal fixed top-0 left-0 w-full h-full bg-black bg-opacity-50 flex items-center justify-center" onClick={handleEditModalClick}>
                         <div className="modal-content bg-white p-6 rounded shadow">
@@ -330,9 +342,12 @@ function Post() {
                                         className="w-full h-[40px] mt-[6px] px-3 py-2 border border-gray-300 rounded-[6px] text-gray-600 bg-white placeholder-gray-400"
                                     />
                                 </div>
-                                <button className="mt-[16px] px-4 py-2 bg-[#0F172A] text-white text-[14px] font-medium rounded-[6px] hover:opacity-90"
-                                        onClick={handleAddEditImageClick}>
-                                    Добавить картинку
+                                <button
+                                    className="mt-[16px] px-4 py-2 bg-[#0F172A] text-white text-[14px] font-medium rounded-[6px] hover:opacity-90 flex items-center space-x-2"
+                                    onClick={handleAddEditImageClick}
+                                >
+                                    <img src={upload} alt="Upload" className="w-4 h-4" />
+                                    <span>Добавить картинку</span>
                                 </button>
                                 <div className="w-full mt-[16px] gap-[6px]">
                                     <label className="block font-inter text-[14px] font-medium leading-[14px] text-[#0F172A]">Контент</label>
@@ -344,13 +359,13 @@ function Post() {
                                 <div className="w-full mt-[16px] flex gap-[8px]">
                                     <button
                                         className="w-[167px] px-4 py-2 bg-[#E2E8F0] border  text-[#0F172A] text-[14px] font-medium rounded-[6px] hover:bg-[#0F172A] hover:text-white"
-                                        onClick={handlePublishClick}
+                                        onClick={handleCloseEditModal}
                                     >
                                         Опубликовать пост
                                     </button>
                                     <button
                                         className="w-[196px] px-4 py-2 bg-[#E2E8F0] border  text-[#0F172A] text-[14px] font-medium rounded-[6px] hover:bg-[#0F172A] hover:text-white"
-                                        onClick={handleDraftClick}
+                                        onClick={handleCloseEditModal}
                                     >
                                         Отправить в черновики
                                     </button>
@@ -375,7 +390,13 @@ function Post() {
                                     className="w-full h-[40px] mt-[6px] px-3 py-2 border border-gray-300 rounded-[6px] text-gray-600 bg-white placeholder-gray-400"
                                 />
                             </div>
-                            <section className="post-content mt-3 w-[300px] h-[200px] hover:bg-[#a6aeb8]"> </section>
+                            <section className="post-content relative mt-3 w-[300px] h-[200px] hover:bg-[#a6aeb8] group">
+                                <img
+                                    src={trash}
+                                    alt="Delete"
+                                    className="trash-icon absolute top-2 right-2 hidden group-hover:block w-6 h-6 cursor-pointer"
+                                />
+                            </section>
                             <div className="w-full mt-[16px] gap-[6px]">
                                 <label className="block font-inter text-[14px] font-medium leading-[14px] text-[#0F172A]">Контент</label>
                                 <input
@@ -400,11 +421,9 @@ function Post() {
                         </div>
                     </div>
                 )}
-                    
             </div>
         </div>
     );
 }
-
 
 export default Post;
