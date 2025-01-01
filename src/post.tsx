@@ -318,23 +318,44 @@ function Post() {
                     </div>
                 )}
                 {isEditModalOpen && (
-                    <div
-                        className="modal fixed top-0 left-0 w-full h-full bg-black bg-opacity-50 flex items-center justify-center"
-                        onClick={handleEditModalClick}
-                    >
+                    <div className="modal fixed top-0 left-0 w-full h-full bg-black bg-opacity-50 flex items-center justify-center" onClick={handleEditModalClick}>
                         <div className="modal-content bg-white p-6 rounded shadow">
-                            <h4 className="font-inter text-[20px] font-semibold leading-[28px] text-[#0F172A]">Редактировать пост</h4>
-                            <input
-                                type="text"
-                                placeholder="Введите новый заголовок"
-                                className="w-full border border-gray-300 rounded p-2 mt-4"
-                            />
-                            <button
-                                onClick={handleAddEditImageClick}
-                                className="mt-4 bg-blue-500 text-white py-2 px-4 rounded"
-                            >
-                                Добавить картинку
-                            </button>
+                            <div className="w-[544px] h-[370px] top-[355px] left-[688px] pt-4 gap-4 rounded-tl-[12px] opacity-0]">
+                                <h4 className="font-inter text-[20px] font-semibold leading-[28px] tracking-[-0.005em] text-[#0F172A]">Редактировать пост</h4>
+                                <div className="w-full mt-[16px] gap-[6px]">
+                                    <label className="block font-inter text-[14px] font-medium leading-[20px] text-[#0F172A]">Заголовок</label>
+                                    <input
+                                        type="text"
+                                        placeholder="Введите заголовок"
+                                        className="w-full h-[40px] mt-[6px] px-3 py-2 border border-gray-300 rounded-[6px] text-gray-600 bg-white placeholder-gray-400"
+                                    />
+                                </div>
+                                <button className="mt-[16px] px-4 py-2 bg-[#0F172A] text-white text-[14px] font-medium rounded-[6px] hover:opacity-90"
+                                        onClick={handleAddEditImageClick}>
+                                    Добавить картинку
+                                </button>
+                                <div className="w-full mt-[16px] gap-[6px]">
+                                    <label className="block font-inter text-[14px] font-medium leading-[14px] text-[#0F172A]">Контент</label>
+                                    <input
+                                        placeholder="Введите контент"
+                                        className="w-full h-[80px] mt-[6px] px-3 py-2 border border-gray-300 rounded-[6px] text-gray-600 bg-white placeholder-gray-400"
+                                    />
+                                </div>
+                                <div className="w-full mt-[16px] flex gap-[8px]">
+                                    <button
+                                        className="w-[167px] px-4 py-2 bg-[#E2E8F0] border  text-[#0F172A] text-[14px] font-medium rounded-[6px] hover:bg-[#0F172A] hover:text-white"
+                                        onClick={handlePublishClick}
+                                    >
+                                        Опубликовать пост
+                                    </button>
+                                    <button
+                                        className="w-[196px] px-4 py-2 bg-[#E2E8F0] border  text-[#0F172A] text-[14px] font-medium rounded-[6px] hover:bg-[#0F172A] hover:text-white"
+                                        onClick={handleDraftClick}
+                                    >
+                                        Отправить в черновики
+                                    </button>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 )}
@@ -344,21 +365,42 @@ function Post() {
                         className="modal fixed top-0 left-0 w-full h-full bg-black bg-opacity-50 flex items-center justify-center"
                         onClick={handleEditImageModalClick}
                     >
-                        <div className="modal-content bg-white p-6 rounded shadow">
-                            <h4 className="font-inter text-[20px] font-semibold leading-[28px] text-[#0F172A]">Добавить картинку</h4>
-                            <input
-                                type="file"
-                                className="w-full border border-gray-300 rounded p-2 mt-4"
-                            />
-                            <button
-                                onClick={handleCloseEditModal}
-                                className="mt-4 bg-blue-500 text-white py-2 px-4 rounded"
-                            >
-                                Закрыть
-                            </button>
+                        <div className="modal-content bg-white p-6 rounded shadow w-[400px]">
+                            <h4 className="font-inter text-[20px] font-semibold leading-[28px] tracking-[-0.005em] text-[#0F172A]">Создать пост</h4>
+                            <div className="w-full mt-[16px] gap-[6px]">
+                                <label className="block font-inter text-[14px] font-medium leading-[20px] text-[#0F172A]">Заголовок</label>
+                                <input
+                                    type="text"
+                                    placeholder="Введите заголовок"
+                                    className="w-full h-[40px] mt-[6px] px-3 py-2 border border-gray-300 rounded-[6px] text-gray-600 bg-white placeholder-gray-400"
+                                />
+                            </div>
+                            <section className="post-content mt-3 w-[300px] h-[200px] hover:bg-[#a6aeb8]"> </section>
+                            <div className="w-full mt-[16px] gap-[6px]">
+                                <label className="block font-inter text-[14px] font-medium leading-[14px] text-[#0F172A]">Контент</label>
+                                <input
+                                    placeholder="Введите контент"
+                                    className="w-full h-[80px] mt-[6px] px-3 py-2 border border-gray-300 rounded-[6px] text-gray-600 bg-white placeholder-gray-400"
+                                />
+                            </div>
+                            <div className="w-full mt-[16px] flex gap-[8px]">
+                                <button
+                                    className="w-[167px] px-4 py-2 bg-[#E2E8F0] border  text-[#0F172A] text-[14px] font-medium rounded-[6px] hover:bg-[#0F172A] hover:text-white"
+                                    onClick={handleCloseEditModal}
+                                >
+                                    Опубликовать пост
+                                </button>
+                                <button
+                                    className="w-[196px] px-4 py-2 bg-[#E2E8F0] border  text-[#0F172A] text-[14px] font-medium rounded-[6px] hover:bg-[#0F172A] hover:text-white"
+                                    onClick={handleCloseEditModal}
+                                >
+                                    Отправить в черновики
+                                </button>
+                            </div>
                         </div>
                     </div>
                 )}
+                    
             </div>
         </div>
     );
