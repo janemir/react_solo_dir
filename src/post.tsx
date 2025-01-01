@@ -124,7 +124,7 @@ function Post() {
 
     return (
         <div>
-            <header className="post-header flex justify-between items-center px-4 py-2 bg-gray-100">
+            <header className="post-header flex justify-between w-[1140px] items-center px-4 py-2 bg-gray-100">
                 <div className="post-header-left">
                     <img src={logo} alt="Логотип" className="h-10" />
                 </div>
