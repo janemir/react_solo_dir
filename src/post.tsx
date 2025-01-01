@@ -1,4 +1,4 @@
-import { useState } from "react";
+import React, { useState } from "react";
 import avatar from './assets/avatar.svg';
 import logo from './assets/logo.svg';
 import newspaper from './assets/newspaper.svg';
@@ -6,13 +6,22 @@ import phone from './assets/phone.svg';
 import logout from './assets/log-out.svg';
 import iconButtons from './assets/icon buttons.svg';
 
-const posts = [
+type Post = {
+    id: number;
+    title: string;
+    date: string;
+    email: string;
+    content: string;
+};
+
+const posts: Post[] = [
     {
         id: 1,
         title: "Заголовок",
         date: "31 октября",
         email: "pochta@gmail.com",
-        content: "Повседневная практика показывает, что социально-экономическое развитие способствует подготовке и реализации " +
+        content:
+            "Повседневная практика показывает, что социально-экономическое развитие способствует подготовке и реализации " +
             "распределения внутренних резервов и ресурсов. Предварительные выводы неутешительны: перспективное планирование " +
             "не даёт нам иного выбора, кроме определения экономической целесообразности принимаемых решений.",
     },
@@ -21,18 +30,18 @@ const posts = [
         title: "Заголовок",
         date: "31 октября",
         email: "pochta@gmail.com",
-        content: "Повседневная практика показывает, что социально-экономическое развитие способствует подготовке и реализации " +
+        content:
+            "Повседневная практика показывает, что социально-экономическое развитие способствует подготовке и реализации " +
             "распределения внутренних резервов и ресурсов. Предварительные выводы неутешительны: " +
             "перспективное планирование не даёт нам иного выбора, кроме определения экономической целесообразности принимаемых решений.",
     },
 ];
 
 function Post() {
-
-    const [currentPost, setCurrentPost] = useState(posts[0]);
+    const [currentPost, setCurrentPost] = useState<Post>(posts[0]);
     const [isTabsVisible, setTabsVisible] = useState(false);
-    const [visiblePostButtons, setVisiblePostButtons] = useState(null);
-    const [activeTab, setActiveTab] = useState("all");
+    const [visiblePostButtons, setVisiblePostButtons] = useState<number | null>(null);
+    const [activeTab, setActiveTab] = useState<string>("all");
     const [isModalOpen, setModalOpen] = useState(false);
     const [isImageModalOpen, setImageModalOpen] = useState(false);
     const [isEditModalOpen, setEditModalOpen] = useState(false);
@@ -42,12 +51,12 @@ function Post() {
         setTabsVisible(!isTabsVisible);
     };
 
-    const handlePostClick = (post) => {
+    const handlePostClick = (post: Post) => {
         setCurrentPost(post);
         setVisiblePostButtons(post.id);
     };
 
-    const handleTabClick = (tab) => {
+    const handleTabClick = (tab: string) => {
         setActiveTab(tab);
     };
 
@@ -65,7 +74,7 @@ function Post() {
         setImageModalOpen(false);
     };
 
-    const handleModalClick = (e) => {
+    const handleModalClick = (e: React.MouseEvent<HTMLDivElement>) => {
         if (e.target === e.currentTarget) {
             setModalOpen(false);
         }
@@ -79,7 +88,7 @@ function Post() {
         setModalOpen(false);
     };
 
-    const handleImageModalClick = (e) => {
+    const handleImageModalClick = (e: React.MouseEvent<HTMLDivElement>) => {
         if (e.target === e.currentTarget) {
             setImageModalOpen(false);
         }
@@ -99,13 +108,13 @@ function Post() {
         setEditImageModalOpen(false);
     };
 
-    const handleEditModalClick = (e) => {
+    const handleEditModalClick = (e: React.MouseEvent<HTMLDivElement>) => {
         if (e.target === e.currentTarget) {
             setEditModalOpen(false);
         }
     };
 
-    const handleEditImageModalClick = (e) => {
+    const handleEditImageModalClick = (e: React.MouseEvent<HTMLDivElement>) => {
         if (e.target === e.currentTarget) {
             setEditImageModalOpen(false);
         }
@@ -129,7 +138,7 @@ function Post() {
                             <li onClick={handlePostsClick} className="cursor-pointer">
                                 <div className="flex items-center space-x-2">
                                     <img src={newspaper} alt="newspaper" className="h-6" />
-                                    <span className="text-gray-700 hover:text-blue-500">Посты</span>
+                                    <span className="text-gray-700 font-inter hover:text-blue-500">Посты</span>
                                 </div>
                             </li>
                             <li className="cursor-pointer">
