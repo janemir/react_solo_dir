@@ -125,18 +125,18 @@ function Post() {
     return (
         <div className="container mx-auto w-[1040px]">
             <header className="header w-full p-4 bg-white flex justify-between items-center">
-            <div>
+                <div>
                     <img src={logo} alt="Логотип" className="w-72px h-20px" />
                 </div>
                 <div className="flex items-center space-x-4">
                     <p className="text-gray-700">{currentPost.email}</p>
                     <img src={avatar} alt="Аватар" className="h-10 w-10 rounded-full" />
                 </div>
-    
-</header>
-            <div className="main-container flex">
-            <aside className="fixed top-[128px] w-[208px] h-[872px] bg-white flex flex-col justify-between p-4">
-                    
+
+            </header>
+            <div className="main-container flex gap-[32px] mt-6">
+                <aside className="fixed top-[128px] w-[208px] h-[872px] bg-white flex flex-col justify-between p-4">
+
                     <div className="flex flex-col space-y-2">
                         <div className="w-[192px] h-[40px] flex items-center space-x-2 cursor-pointer hover:bg-[#F1F5F9]" onClick={handlePostsClick} >
                             <img src={newspaper} alt="Иконка" className="h-[24px] w-[24px]" />
@@ -147,40 +147,37 @@ function Post() {
                             <span className="font-medium text-[14px] font-inter text-slate-400">Контакты</span>
                         </div>
                     </div>
-                    
+
                     <div className="w-[192px] h-[40px] flex items-center space-x-2 cursor-pointer hover:bg-[#F1F5F9]">
                         <img src={logout} alt="Иконка" className="h-[24px] w-[24px]" />
                         <span className="font-medium text-[14px] font-inter text-slate-400">Выйти</span>
                     </div>
                 </aside>
-                <main className="content-center flex-1 p-6 space-y-18">
+                <main className="w-[768px] h-[1520px] ml-[240px]">
                     {isTabsVisible && (
                         <div className="mb-4">
                             <div className="tabs w-[307px] h-[40px] p-1 flex items-center border rounded-t-md">
                                 <button
                                     onClick={() => handleTabClick("all")}
                                     className={`tab-trigger w-[96px] h-[32px] flex items-center justify-center
-                                    whitespace-nowrap px-4 py-2 ${
-                                        activeTab === "all" ? "bg-gray-200" : "bg-white hover:bg-slate-100"
-                                    } rounded`}
+                                    whitespace-nowrap px-4 py-2 ${activeTab === "all" ? "bg-gray-200" : "bg-white hover:bg-slate-100"
+                                        } rounded`}
                                 >
                                     Все посты
                                 </button>
                                 <button
                                     onClick={() => handleTabClick("mine")}
                                     className={`tab-trigger w-[100px] h-[32px] flex items-center justify-center
-                                    whitespace-nowrap px-4 py-2 ${
-                                        activeTab === "mine" ? "bg-gray-200" : "bg-white hover:bg-slate-100"
-                                    } rounded`}
+                                    whitespace-nowrap px-4 py-2 ${activeTab === "mine" ? "bg-gray-200" : "bg-white hover:bg-slate-100"
+                                        } rounded`}
                                 >
                                     Мои посты
                                 </button>
                                 <button
                                     onClick={() => handleTabClick("drafts")}
                                     className={`tab-trigger w-[101px] h-[32px] flex items-center justify-center
-                                    whitespace-nowrap px-4 py-2 ${
-                                        activeTab === "drafts" ? "bg-gray-200" : "bg-white hover:bg-slate-100"
-                                    } rounded`}
+                                    whitespace-nowrap px-4 py-2 ${activeTab === "drafts" ? "bg-gray-200" : "bg-white hover:bg-slate-100"
+                                        } rounded`}
                                 >
                                     Черновики
                                 </button>
@@ -220,17 +217,18 @@ function Post() {
                                         Опубликовать пост
                                     </button>
                                     <button className="edit-button w-[138px] h-[40px] bg-gray-100 text-gray-700 rounded-tr-md hover:bg-gray-800"
-                                            onClick={handleEditPostClick}>
+                                        onClick={handleEditPostClick}>
                                         Редактировать
                                     </button>
                                 </div>
                             )}
                             <div className="mt-4">
-                                <img src={iconButtons} alt="icon buttons" className="h-6"/>
+                                <img src={iconButtons} alt="icon buttons" className="h-6" />
                             </div>
                         </article>
                     ))}
                 </main>
+                <aside>dfghjkl</aside>
                 {isModalOpen && (
                     <div className="modal fixed top-0 left-0 w-full h-full bg-black bg-opacity-50 flex items-center justify-center" onClick={handleModalClick}>
                         <div className="modal-content bg-white p-6 rounded shadow">

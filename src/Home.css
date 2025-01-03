@@ -173,102 +173,17 @@ body {
     height: 24px;
 }
 
-/* Закрепленный header */
-.post-header {
-    position: fixed;
-    height: 80px;
-    top: 0;
-    left: 0;
-    width: 100%;
-    background-color: #ffffff;
-    display: flex;
-    align-items: center;
-    padding: 0 20px;
-    z-index: 1000;
-}
-
-.tag {
-    display: flex;
-    flex-direction: row;
-}
-
-.post-header-left img{
-    display: flex;
-    height: 20px;
-    margin-left: 336px;
-}
-
-.post-header-right {
-    display: flex;
-    align-items: center;
-    margin-left: 900px;
-    gap: 10px;
-}
-
-/* Основной контейнер */
-.main-container {
-    display: flex;
-    margin: 80px auto; /* Отступ для учета высоты header */
-    max-width: 1200px;
-    padding: 20px;
-    gap: 20px;
-}
-
-/* Фиксированный сайдбар */
-.sidebar {
-    position: sticky;
-    top: 128px; /* Учитывает высоту хедера */
-    width: 208px;
-    height: 872px;
-    background-color: #f1f1f1;
-    border-radius: 8px;
-    padding: 15px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-
-}
-
-.sidebar ul {
-    list-style: none;
-    padding: 0;
-}
-
-.sidebar li {
-    margin-bottom: 10px;
-}
-
-.sidebar a {
-    text-decoration: none;
-    color: #333;
-}
-
-.sidebar a:hover {
-    text-decoration: underline;
-}
-
 /* Центральный контент */
 .content-center {
     flex: 2;
 }
 
-.post {
-    width: 768px;
-    height: 724px;
-    background-color: #fff;
-    border-radius: 8px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    padding: 20px;
-    margin-bottom: 20px;
-}
+
 
 .post h2 {
     margin-top: 0;
 }
 
-/* Правая картинка */
-.content-right {
-
-    width: 208px;
-}
 
 section{
     width: 736px;
