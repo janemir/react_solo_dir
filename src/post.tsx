@@ -134,29 +134,23 @@ function Post() {
                 </div>
             </header>
             <div className="main-container flex">
-                <aside className="sidebar w-64 bg-gray-50 p-4">
-                    <nav>
-                        <ul className="space-y-4">
-                            <li onClick={handlePostsClick} className="cursor-pointer">
-                                <div className="flex items-center space-x-2">
-                                    <img src={newspaper} alt="newspaper" className="h-6" />
-                                    <span className="text-gray-700 font-inter hover:text-blue-500">Посты</span>
-                                </div>
-                            </li>
-                            <li className="cursor-pointer">
-                                <div className="flex items-center space-x-2">
-                                    <img src={phone} alt="phone" className="h-6" />
-                                    <span className="text-gray-700 hover:text-blue-500">Контакты</span>
-                                </div>
-                            </li>
-                            <li className="cursor-pointer">
-                                <div className="flex items-center space-x-2">
-                                    <img src={logout} alt="log-out" className="h-6" />
-                                    <span className="text-gray-700 hover:text-blue-500">Выйти</span>
-                                </div>
-                            </li>
-                        </ul>
-                    </nav>
+            <aside className="fixed top-[128px] left-[336px] w-[208px] h-[872px] bg-white flex flex-col justify-between p-4">
+                    
+                    <div className="flex flex-col space-y-2">
+                        <div className="w-[208px] h-[40px] flex items-center space-x-2 cursor-pointer" >
+                            <img src={newspaper} alt="Иконка" className="h-[24px] w-[24px]" />
+                            <span className="font-medium text-[14px] font-inter text-slate-900" onClick={handlePostsClick}>Посты</span>
+                        </div>
+                        <div className="w-[208px] h-[40px] flex items-center space-x-2 cursor-pointer">
+                            <img src={phone} alt="Иконка" className="h-[24px] w-[24px]" />
+                            <span className="font-medium text-[14px] font-inter text-slate-400">Контакты</span>
+                        </div>
+                    </div>
+                    
+                    <div className="w-[208px] h-[40px] flex items-center space-x-2 cursor-pointer">
+                        <img src={logout} alt="Иконка" className="h-[24px] w-[24px]" />
+                        <span className="font-medium text-[14px] font-inter text-slate-400">Выйти</span>
+                    </div>
                 </aside>
                 <main className="content-center flex-1 p-6 space-y-18">
                     {isTabsVisible && (
