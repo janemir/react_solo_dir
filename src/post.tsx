@@ -41,7 +41,7 @@ const posts: Post[] = [
 
 function Post() {
     const [currentPost, setCurrentPost] = useState<Post>(posts[0]);
-    const [isTabsVisible, setTabsVisible] = useState(false);
+    {/*const [isTabsVisible, setTabsVisible] = useState(false);*/}
     const [visiblePostButtons, setVisiblePostButtons] = useState<number | null>(null);
     const [activeTab, setActiveTab] = useState<string>("all");
     const [isModalOpen, setModalOpen] = useState(false);
@@ -135,11 +135,11 @@ function Post() {
             </header>
             <div className="main-container flex">
                 <aside className="fixed top-[128px] left-[336px] w-[208px] h-[872px] bg-white flex flex-col justify-between p-4">
-                    {/* Верхняя часть контейнера */}
+                    
                     <div className="flex flex-col space-y-2">
                         <div className="w-[208px] h-[40px] flex items-center space-x-2">
                             <img src={newspaper} alt="Иконка" className="h-[24px] w-[24px]" />
-                            <span className="font-medium text-[14px] font-inter text-slate-900">Посты</span>
+                            <span className="font-medium text-[14px] font-inter text-slate-900">Посcccccccccccты</span>
                         </div>
                         <div className="w-[208px] h-[40px] flex items-center space-x-2">
                             <img src={phone} alt="Иконка" className="h-[24px] w-[24px]" />
