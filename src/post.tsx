@@ -123,31 +123,32 @@ function Post() {
     };
 
     return (
-        <div>
-            <header className="post-header flex justify-between items-center px-4 py-2 bg-gray-100">
-                <div className="post-header-left">
-                    <img src={logo} alt="Логотип" className="h-10" />
+        <div className="container mx-auto w-[1040px]">
+            <header className="header w-full p-4 bg-white flex justify-between items-center">
+            <div>
+                    <img src={logo} alt="Логотип" className="w-72px h-20px" />
                 </div>
-                <div className="post-header-right flex items-center space-x-4">
+                <div className="flex items-center space-x-4">
                     <p className="text-gray-700">{currentPost.email}</p>
                     <img src={avatar} alt="Аватар" className="h-10 w-10 rounded-full" />
                 </div>
-            </header>
+    
+</header>
             <div className="main-container flex">
-            <aside className="fixed top-[128px] left-[336px] w-[208px] h-[872px] bg-white flex flex-col justify-between p-4">
+            <aside className="fixed top-[128px] w-[208px] h-[872px] bg-white flex flex-col justify-between p-4">
                     
                     <div className="flex flex-col space-y-2">
-                        <div className="w-[208px] h-[40px] flex items-center space-x-2 cursor-pointer" >
+                        <div className="w-[192px] h-[40px] flex items-center space-x-2 cursor-pointer hover:bg-[#F1F5F9]" onClick={handlePostsClick} >
                             <img src={newspaper} alt="Иконка" className="h-[24px] w-[24px]" />
-                            <span className="font-medium text-[14px] font-inter text-slate-900" onClick={handlePostsClick}>Посты</span>
+                            <span className="font-medium text-[14px] font-inter text-slate-900 ">Посты</span>
                         </div>
-                        <div className="w-[208px] h-[40px] flex items-center space-x-2 cursor-pointer">
+                        <div className="w-[192px] h-[40px] flex items-center space-x-2 cursor-pointer hover:bg-[#F1F5F9]">
                             <img src={phone} alt="Иконка" className="h-[24px] w-[24px]" />
                             <span className="font-medium text-[14px] font-inter text-slate-400">Контакты</span>
                         </div>
                     </div>
                     
-                    <div className="w-[208px] h-[40px] flex items-center space-x-2 cursor-pointer">
+                    <div className="w-[192px] h-[40px] flex items-center space-x-2 cursor-pointer hover:bg-[#F1F5F9]">
                         <img src={logout} alt="Иконка" className="h-[24px] w-[24px]" />
                         <span className="font-medium text-[14px] font-inter text-slate-400">Выйти</span>
                     </div>
@@ -187,7 +188,7 @@ function Post() {
                             {activeTab === "mine" && (
                                 <button
                                     className="create-post-button mt-4 w-[768px] h-[40px] px-4 py-2 text-white bg-[#0F172A] rounded-tl-md
-    focus:opacity-100 opacity-100 hover:bg-gray-800 transition-all duration-200"
+                                    focus:opacity-100 opacity-100 hover:bg-gray-800 transition-all duration-200"
                                     onClick={handleCreatePostClick}
                                 >
                                     Создать пост
@@ -214,8 +215,8 @@ function Post() {
                             {visiblePostButtons === post.id && (
                                 <div className="post-actions-container flex items-center gap-2 w-[313px] h-[40px] mt-4">
                                     <button className="publish-button whitespace-nowrap flex items-center justify-center w-[167px] h-[40px] px-4 py-2 gap-2 bg-gray-100 text-gray-700
-    rounded-tl-md rounded-bl-md hover:bg-[#0F172A] hover:text-[#F1F5F9] focus:bg-[#0F172A]
-    focus:text-[#F1F5F9] transition-all duration-200">
+                                    rounded-tl-md rounded-bl-md hover:bg-[#0F172A] hover:text-[#F1F5F9] focus:bg-[#0F172A]
+                                    focus:text-[#F1F5F9] transition-all duration-200">
                                         Опубликовать пост
                                     </button>
                                     <button className="edit-button w-[138px] h-[40px] bg-gray-100 text-gray-700 rounded-tr-md hover:bg-gray-800"
