@@ -49,9 +49,9 @@ function Post() {
     const [isEditModalOpen, setEditModalOpen] = useState(false);
     const [isEditImageModalOpen, setEditImageModalOpen] = useState(false);
 
-    const handlePostsClick = () => {
+    {/*const handlePostsClick = () => {
         setTabsVisible(!isTabsVisible);
-    };
+    };*/}
 
     const handlePostClick = (post: Post) => {
         setCurrentPost(post);
