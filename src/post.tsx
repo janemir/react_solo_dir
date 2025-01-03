@@ -49,9 +49,9 @@ function Post() {
     const [isEditModalOpen, setEditModalOpen] = useState(false);
     const [isEditImageModalOpen, setEditImageModalOpen] = useState(false);
 
-    {/*const handlePostsClick = () => {
+    const handlePostsClick = () => {
         setTabsVisible(!isTabsVisible);
-    };*/}
+    };
 
     const handlePostClick = (post: Post) => {
         setCurrentPost(post);
@@ -123,8 +123,8 @@ function Post() {
     };
 
     return (
-        <div className="container mx-auto w-[1040px]">
-            <header className="post-header flex justify-between w-[1140px] items-center px-4 py-2 bg-gray-100">
+        <div>
+            <header className="post-header flex justify-between items-center px-4 py-2 bg-gray-100">
                 <div className="post-header-left">
                     <img src={logo} alt="Логотип" className="h-10" />
                 </div>
@@ -134,7 +134,7 @@ function Post() {
                 </div>
             </header>
             <div className="main-container flex">
-                <aside className="sidebar w-64 bg-gray-50 p-4"> 
+                <aside className="sidebar w-64 bg-gray-50 p-4">
                     <nav>
                         <ul className="space-y-4">
                             <li onClick={handlePostsClick} className="cursor-pointer">
@@ -158,8 +158,6 @@ function Post() {
                         </ul>
                     </nav>
                 </aside>
-                
-
                 <main className="content-center flex-1 p-6 space-y-18">
                     {isTabsVisible && (
                         <div className="mb-4">
