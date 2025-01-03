@@ -1,4 +1,5 @@
 import { useState } from "react";
+import adv from './assets/adv.png';
 import avatar from './assets/avatar.svg';
 import logo from './assets/logo.svg';
 import newspaper from './assets/newspaper.svg';
@@ -128,7 +129,7 @@ function Post() {
                 <div>
                     <img src={logo} alt="Логотип" className="w-72px h-20px" />
                 </div>
-                <div className="flex items-center space-x-4">
+                <div className="flex items-center space-x-4 relative left-[10px]">
                     <p className="text-gray-700">{currentPost.email}</p>
                     <img src={avatar} alt="Аватар" className="h-10 w-10 rounded-full" />
                 </div>
@@ -228,7 +229,9 @@ function Post() {
                         </article>
                     ))}
                 </main>
-                <aside>dfghjkl</aside>
+                <aside>
+                <img src={adv} alt="Баннер" className="w-[208px] h-auto" />
+                </aside>
                 {isModalOpen && (
                     <div className="modal fixed top-0 left-0 w-full h-full bg-black bg-opacity-50 flex items-center justify-center" onClick={handleModalClick}>
                         <div className="modal-content bg-white p-6 rounded shadow">
