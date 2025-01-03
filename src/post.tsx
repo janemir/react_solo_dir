@@ -123,8 +123,8 @@ function Post() {
     };
 
     return (
-        <div className="container mx-auto w-[1040px]">
-            <header className="header w-full p-4 bg-white flex justify-between items-center">
+        <div className="container mx-auto w-[1248px]">
+            <header className="header w-full h-[80px] p-4 bg-white flex justify-between items-center">
                 <div>
                     <img src={logo} alt="Логотип" className="w-72px h-20px" />
                 </div>
@@ -135,21 +135,21 @@ function Post() {
 
             </header>
             <div className="main-container flex gap-[32px] mt-6">
-                <aside className="fixed top-[128px] w-[208px] h-[872px] bg-white flex flex-col justify-between p-4">
+                <aside className="fixed top-[80px] w-[208px] h-[872px] bg-white flex flex-col justify-between p-4">
 
                     <div className="flex flex-col space-y-2">
                         <div className="w-[192px] h-[40px] flex items-center space-x-2 cursor-pointer hover:bg-[#F1F5F9]" onClick={handlePostsClick} >
-                            <img src={newspaper} alt="Иконка" className="h-[24px] w-[24px]" />
+                            <img src={newspaper} alt="Иконка" className="h-[24px] w-[24px] ml-[16px]" />
                             <span className="font-medium text-[14px] font-inter text-slate-900 ">Посты</span>
                         </div>
                         <div className="w-[192px] h-[40px] flex items-center space-x-2 cursor-pointer hover:bg-[#F1F5F9]">
-                            <img src={phone} alt="Иконка" className="h-[24px] w-[24px]" />
+                            <img src={phone} alt="Иконка" className="h-[24px] w-[24px] ml-[16px]" />
                             <span className="font-medium text-[14px] font-inter text-slate-400">Контакты</span>
                         </div>
                     </div>
 
                     <div className="w-[192px] h-[40px] flex items-center space-x-2 cursor-pointer hover:bg-[#F1F5F9]">
-                        <img src={logout} alt="Иконка" className="h-[24px] w-[24px]" />
+                        <img src={logout} alt="Иконка" className="h-[24px] w-[24px] ml-[16px]" />
                         <span className="font-medium text-[14px] font-inter text-slate-400">Выйти</span>
                     </div>
                 </aside>
