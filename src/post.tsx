@@ -134,6 +134,31 @@ function Post() {
                 </div>
             </header>
             <div className="main-container flex">
+
+            <aside className="sidebar w-64 bg-gray-50 p-4"> 
+                    <nav>
+                        <ul className="space-y-4">
+                            <li onClick={handlePostsClick} className="cursor-pointer">
+                                <div className="flex items-center space-x-2">
+                                    <img src={newspaper} alt="newspaper" className="h-6" />
+                                    <span className="text-gray-700 font-inter hover:text-blue-500">Посты</span>
+                                </div>
+                            </li>
+                            <li className="cursor-pointer">
+                                <div className="flex items-center space-x-2">
+                                    <img src={phone} alt="phone" className="h-6" />
+                                    <span className="text-gray-700 hover:text-blue-500">Контакты</span>
+                                </div>
+                            </li>
+                            <li className="cursor-pointer">
+                                <div className="flex items-center space-x-2">
+                                    <img src={logout} alt="log-out" className="h-6" />
+                                    <span className="text-gray-700 hover:text-blue-500">Выйти</span>
+                                </div>
+                            </li>
+                        </ul>
+                    </nav>
+                </aside>
                 <aside className="fixed top-[128px] left-[336px] w-[208px] h-[872px] bg-white flex flex-col justify-between p-4">
                     {/* Верхняя часть контейнера */}
                     <div className="flex flex-col space-y-2">
@@ -164,7 +189,7 @@ function Post() {
                                         activeTab === "all" ? "bg-gray-200" : "bg-white hover:bg-slate-100"
                                     } rounded`}
                                 >
-                                    Все посты
+                                    Все постыssss
                                 </button>
                                 <button
                                     onClick={() => handleTabClick("mine")}
@@ -182,7 +207,7 @@ function Post() {
                                         activeTab === "drafts" ? "bg-gray-200" : "bg-white hover:bg-slate-100"
                                     } rounded`}
                                 >
-                                    Черновики
+                                    Черновикиbbg
                                 </button>
                             </div>
                             {activeTab === "mine" && (
