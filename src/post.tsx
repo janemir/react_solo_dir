@@ -42,7 +42,7 @@ const posts: Post[] = [
 ];
 
 function Post() {
-    const [currentPost, setCurrentPost] = useState<Post>(posts[0]);
+    const [currentPost] = useState<Post>(posts[0]);{/*, setCurrentPost*/}
     const [isTabsVisible, setTabsVisible] = useState(true);
     {/*const [visiblePostButtons, setVisiblePostButtons] = useState<number | null>(null);*/}
     const [activeTab, setActiveTab] = useState<string>("all");
@@ -52,6 +52,14 @@ function Post() {
     const [isEditImageModalOpen, setEditImageModalOpen] = useState(false);
     const navigate = useNavigate();
 
+    const handlePostClick_ = (postId: number) => {
+        if (activeTab === "drafts") {
+            // Если вкладка "Черновики", ничего не делаем
+            return;
+        }
+        navigate(`/posts/${postId}`); // Перенаправление на страницу поста
+    };
+
     const handleLogout = () => {
         navigate("/");
     };
@@ -59,10 +67,6 @@ function Post() {
     const handlePostsClick = () => {
         setTabsVisible(!isTabsVisible);
     };
-
-    {/*const handlePostClick = (postId: number) => {
-        navigate(`/posts/${postId}`); // Переход на страницу поста
-    };*/}
 
     {/*const handlePostClick = (post: Post) => {
         setCurrentPost(post);
@@ -205,13 +209,13 @@ function Post() {
                     )}
                     {posts.map((post) => (
             <PostDetail
-                key={post.id}
-                post={post}
-                activeTab={activeTab}
-                currentPostId={currentPost?.id || null}
-                onPostClick={setCurrentPost}
-                onEditPostClick={handleEditPostClick}
-            />
+            key={post.id}
+            post={post}
+            activeTab={activeTab}
+            currentPostId={currentPost?.id || null}
+            onPostClick={() => handlePostClick_(post.id)} // Передаем обработчик клика
+            onEditPostClick={handleEditPostClick}
+        />
         ))}
                           
                 </main>
