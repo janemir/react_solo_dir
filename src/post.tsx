@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import adv from './assets/adv.png';
 import avatar from './assets/avatar.svg';
 import logo from './assets/logo.svg';
@@ -49,6 +50,11 @@ function Post() {
     const [isImageModalOpen, setImageModalOpen] = useState(false);
     const [isEditModalOpen, setEditModalOpen] = useState(false);
     const [isEditImageModalOpen, setEditImageModalOpen] = useState(false);
+    const navigate = useNavigate();
+
+    const handleLogout = () => {
+        navigate("/");
+    };
 
     const handlePostsClick = () => {
         setTabsVisible(!isTabsVisible);
@@ -148,8 +154,10 @@ function Post() {
                             <span className="font-medium text-[14px] font-inter text-slate-400">Контакты</span>
                         </div>
                     </div>
-
-                    <div className="w-[192px] h-[40px] flex items-center space-x-2 cursor-pointer hover:bg-[#F1F5F9]">
+                    <div
+                        className="w-[192px] h-[40px] flex items-center space-x-2 cursor-pointer hover:bg-[#F1F5F9]"
+                        onClick={handleLogout}
+                    >
                         <img src={logout} alt="Иконка" className="h-[24px] w-[24px] ml-[16px]" />
                         <span className="font-medium text-[14px] font-inter text-slate-400">Выйти</span>
                     </div>
@@ -230,7 +238,7 @@ function Post() {
                     ))}
                 </main>
                 <aside>
-                <img src={adv} alt="Баннер" className="w-[208px] h-auto" />
+                    <img src={adv} alt="Баннер" className="w-[208px] h-auto" />
                 </aside>
                 {isModalOpen && (
                     <div className="modal fixed top-0 left-0 w-full h-full bg-black bg-opacity-50 flex items-center justify-center" onClick={handleModalClick}>
