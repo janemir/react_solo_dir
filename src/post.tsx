@@ -44,7 +44,7 @@ const posts: Post[] = [
 function Post() {
     const [currentPost, setCurrentPost] = useState<Post>(posts[0]);
     const [isTabsVisible, setTabsVisible] = useState(false);
-    const [visiblePostButtons, setVisiblePostButtons] = useState<number | null>(null);
+    {/*const [visiblePostButtons, setVisiblePostButtons] = useState<number | null>(null);*/}
     const [activeTab, setActiveTab] = useState<string>("all");
     const [isModalOpen, setModalOpen] = useState(false);
     const [isImageModalOpen, setImageModalOpen] = useState(false);
@@ -60,10 +60,10 @@ function Post() {
         setTabsVisible(!isTabsVisible);
     };
 
-    const handlePostClick = (post: Post) => {
+    {/*const handlePostClick = (post: Post) => {
         setCurrentPost(post);
         setVisiblePostButtons(post.id);
-    };
+    };*/}
 
     const handleTabClick = (tab: string) => {
         setActiveTab(tab);
