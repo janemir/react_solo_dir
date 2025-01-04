@@ -6,7 +6,7 @@ import logo from './assets/logo.svg';
 import newspaper from './assets/newspaper.svg';
 import phone from './assets/phone.svg';
 import logout from './assets/log-out.svg';
-import iconButtons from './assets/icon buttons.svg';
+import PostDetail from "@/components/ui/PostDetail";
 import trash from './assets/trash.svg';
 import upload from './assets/upload.svg';
 
@@ -200,39 +200,16 @@ function Post() {
                         </div>
                     )}
                     {posts.map((post) => (
-                        <article
-                            key={post.id}
-                            className="post bg-white p-6 rounded shadow hover:bg-gray-200 transition-colors"
-                            onClick={() => setCurrentPost(post)}
-                        >
-                            <div className="tag flex items-center space-x-4">
-                                <img src={avatar} alt="Аватар" className="h-10 w-10 rounded-full" />
-                                <div>
-                                    <p className="text-gray-700">{post.email}</p>
-                                    <p className="text-gray-500 text-sm">{post.date}</p>
-                                </div>
-                            </div>
-                            <h2 className="font-inter text-h4 font-h4 text-left">{post.title}</h2>
-                            <section className="post-content mt-4"> </section>
-                            <p className="text-sm text-gray-600 mt-2">{post.content}</p>
-                            {activeTab === "drafts" && currentPost?.id === post.id && (
-                                <div className="post-actions-container flex items-center gap-2 w-[313px] h-[40px] mt-4">
-                                    <button className="publish-button whitespace-nowrap flex items-center justify-center w-[167px] h-[40px] px-4 py-2 gap-2 bg-gray-100 text-gray-700
-                                    rounded-tl-md rounded-bl-md hover:bg-[#0F172A] hover:text-[#F1F5F9] focus:bg-[#0F172A]
-                                    focus:text-[#F1F5F9] transition-all duration-200">
-                                        Опубликовать пост
-                                    </button>
-                                    <button className="edit-button w-[138px] h-[40px] bg-gray-100 text-gray-700 rounded-tr-md hover:bg-gray-800"
-                                        onClick={handleEditPostClick}>
-                                        Редактировать
-                                    </button>
-                                </div>
-                            )}
-                            <div className="mt-4">
-                                <img src={iconButtons} alt="icon buttons" className="h-6" />
-                            </div>
-                        </article>
-                    ))}
+            <PostDetail
+                key={post.id}
+                post={post}
+                activeTab={activeTab}
+                currentPostId={currentPost?.id || null}
+                onPostClick={setCurrentPost}
+                onEditPostClick={handleEditPostClick}
+            />
+        ))}
+                          
                 </main>
                 <aside>
                     <img src={adv} alt="Баннер" className="w-[208px] h-auto" />
