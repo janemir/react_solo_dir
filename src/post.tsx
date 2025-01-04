@@ -169,24 +169,21 @@ function Post() {
                                 <button
                                     onClick={() => handleTabClick("all")}
                                     className={`tab-trigger w-[96px] h-[32px] flex items-center justify-center
-                                    whitespace-nowrap px-4 py-2 ${activeTab === "all" ? "bg-gray-200" : "bg-white hover:bg-slate-100"
-                                        } rounded`}
+                    whitespace-nowrap px-4 py-2 ${activeTab === "all" ? "bg-gray-200" : "bg-white hover:bg-slate-100"} rounded`}
                                 >
                                     Все посты
                                 </button>
                                 <button
                                     onClick={() => handleTabClick("mine")}
                                     className={`tab-trigger w-[100px] h-[32px] flex items-center justify-center
-                                    whitespace-nowrap px-4 py-2 ${activeTab === "mine" ? "bg-gray-200" : "bg-white hover:bg-slate-100"
-                                        } rounded`}
+                    whitespace-nowrap px-4 py-2 ${activeTab === "mine" ? "bg-gray-200" : "bg-white hover:bg-slate-100"} rounded`}
                                 >
                                     Мои посты
                                 </button>
                                 <button
                                     onClick={() => handleTabClick("drafts")}
                                     className={`tab-trigger w-[101px] h-[32px] flex items-center justify-center
-                                    whitespace-nowrap px-4 py-2 ${activeTab === "drafts" ? "bg-gray-200" : "bg-white hover:bg-slate-100"
-                                        } rounded`}
+                    whitespace-nowrap px-4 py-2 ${activeTab === "drafts" ? "bg-gray-200" : "bg-white hover:bg-slate-100"} rounded`}
                                 >
                                     Черновики
                                 </button>
@@ -206,7 +203,7 @@ function Post() {
                         <article
                             key={post.id}
                             className="post bg-white p-6 rounded shadow hover:bg-gray-200 transition-colors"
-                            onClick={() => handlePostClick(post)}
+                            onClick={() => setCurrentPost(post)}
                         >
                             <div className="tag flex items-center space-x-4">
                                 <img src={avatar} alt="Аватар" className="h-10 w-10 rounded-full" />
@@ -218,7 +215,7 @@ function Post() {
                             <h2 className="font-inter text-h4 font-h4 text-left">{post.title}</h2>
                             <section className="post-content mt-4"> </section>
                             <p className="text-sm text-gray-600 mt-2">{post.content}</p>
-                            {visiblePostButtons === post.id && (
+                            {activeTab === "drafts" && currentPost?.id === post.id && (
                                 <div className="post-actions-container flex items-center gap-2 w-[313px] h-[40px] mt-4">
                                     <button className="publish-button whitespace-nowrap flex items-center justify-center w-[167px] h-[40px] px-4 py-2 gap-2 bg-gray-100 text-gray-700
                                     rounded-tl-md rounded-bl-md hover:bg-[#0F172A] hover:text-[#F1F5F9] focus:bg-[#0F172A]
