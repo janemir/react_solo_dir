@@ -4,7 +4,6 @@ import { Button } from "@/components/ui/button";
 import { Label } from "@/components/ui/label";
 import Login from "@/login";
 import Post from "@/post";
-import PostDetailPage from "@/PostDetailPage";
 import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import "./Home.css";
 
@@ -15,7 +14,6 @@ function App() {
                 <Route path="/" element={<Home />} />
                 <Route path="/login" element={<Login />} />
                 <Route path="/post" element={<Post />} />
-                <Route path="/posts/:id" element={<PostDetailPage />} />
             </Routes>
         </Router>
     );

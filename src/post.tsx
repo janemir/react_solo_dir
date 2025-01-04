@@ -60,6 +60,10 @@ function Post() {
         setTabsVisible(!isTabsVisible);
     };
 
+    {/*const handlePostClick = (postId: number) => {
+        navigate(`/posts/${postId}`); // Переход на страницу поста
+    };*/}
+
     {/*const handlePostClick = (post: Post) => {
         setCurrentPost(post);
         setVisiblePostButtons(post.id);
