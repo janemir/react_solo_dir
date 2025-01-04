@@ -7,7 +7,7 @@ function Login() {
     const navigate = useNavigate();
 
     return (
-        <div className="login-form">
+        <div className="login-form bg-white">
             <h4 className="label-create-account">Войти</h4>
             <Label htmlFor="email">Почта</Label>
             <Input id="email" placeholder="Введите почту" />

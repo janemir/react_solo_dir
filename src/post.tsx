@@ -43,7 +43,7 @@ const posts: Post[] = [
 
 function Post() {
     const [currentPost, setCurrentPost] = useState<Post>(posts[0]);
-    const [isTabsVisible, setTabsVisible] = useState(false);
+    const [isTabsVisible, setTabsVisible] = useState(true);
     {/*const [visiblePostButtons, setVisiblePostButtons] = useState<number | null>(null);*/}
     const [activeTab, setActiveTab] = useState<string>("all");
     const [isModalOpen, setModalOpen] = useState(false);

@@ -24,7 +24,7 @@ function Home() {
 
     return (
 
-            <div className="form-container">
+            <div className="form-container bg-white rounded-[12px]">
                 <h4  className="label-create-account">Создать аккаунт</h4>
                 <div className="form-input-group">
                     <Label htmlFor="email">Почта</Label>
