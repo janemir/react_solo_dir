@@ -6,7 +6,7 @@ import logo from './assets/logo.svg';
 import newspaper from './assets/newspaper.svg';
 import phone from './assets/phone.svg';
 import logout from './assets/log-out.svg';
-import PostDetail from "@/components/ui/PostDetail";
+import PostDetail from './components/ui/PostDetail.tsx';
 import trash from './assets/trash.svg';
 import upload from './assets/upload.svg';
 
