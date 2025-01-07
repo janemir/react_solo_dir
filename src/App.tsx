@@ -14,6 +14,7 @@ function App() {
                 <Route path="/" element={<Home />} />
                 <Route path="/login" element={<Login />} />
                 <Route path="/post" element={<Post />} />
+                <Route path="/post/:id" element={<Post />} />
             </Routes>
         </Router>
     );

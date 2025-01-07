@@ -1,10 +1,11 @@
 import { useState } from "react";
+import { useNavigate, useParams } from "react-router-dom";
 {/*import { useNavigate } from "react-router-dom";*/}
 import adv from './assets/adv.png';
 import PostDetail from './components/ui/PostDetail.tsx';
-import SinglePost from "@/components/ui/SinglePost";
 import Header from './components/ui/Header.tsx';
 import Sidebarrr from './components/ui/Sidebarrr.tsx';
+import SinglePost from './components/ui/SinglePost.tsx';
 import trash from './assets/trash.svg';
 import upload from './assets/upload.svg';
 
@@ -40,19 +41,27 @@ const posts: Post[] = [
 ];
 
 function Post() {
-    const [currentPost, setCurrentPost] = useState<Post>(posts[0]);
+    {/*const [currentPost, setCurrentPost] = useState<Post>(posts[0]);*/}
     const [isTabsVisible, setTabsVisible] = useState(true);
     {/*const [visiblePostButtons, setVisiblePostButtons] = useState<number | null>(null);*/ }
-    const [activeTab, setActiveTab] = useState<string>("all");
+    /*const [activeTab, setActiveTab] = useState<string>("all");*/
     const [isModalOpen, setModalOpen] = useState(false);
     const [isImageModalOpen, setImageModalOpen] = useState(false);
     const [isEditModalOpen, setEditModalOpen] = useState(false);
     const [isEditImageModalOpen, setEditImageModalOpen] = useState(false);
     /*const navigate = useNavigate();*/
-
+    const [activeTab, setActiveTab] = useState<string>("all");
     /*const handleLogout = () => {
         navigate("/");
     };*/
+
+    const { id } = useParams<{ id: string }>();
+    const navigate = useNavigate();
+    const currentPost = id ? posts.find((p) => p.id === Number(id)) : null;
+
+    const handlePostClick = (post: { id: number }) => {
+        navigate(`/post/${post.id}`);
+    };
 
     const handlePostsClick = () => {
         setTabsVisible(!isTabsVisible);
@@ -63,13 +72,18 @@ function Post() {
         setVisiblePostButtons(post.id);
     };*/}
 
+    /*const handleTabClick = (tab: string) => {
+        setActiveTab(tab);
+    };*/
+
     const handleTabClick = (tab: string) => {
         setActiveTab(tab);
+        navigate("/post"); // Вернуться к списку постов при переключении табов
     };
 
-    const handleCreatePostClick = () => {
+    /*const handleCreatePostClick = () => {
         setModalOpen(true);
-    };
+    };*/
 
     const handleAddImageClick = () => {
         setModalOpen(false);
@@ -79,11 +93,16 @@ function Post() {
     const handleCloseModal = () => {
         setModalOpen(false);
         setImageModalOpen(false);
+        setEditModalOpen(false);
+        setEditImageModalOpen(false);
     };
 
     const handleModalClick = (e: React.MouseEvent<HTMLDivElement>) => {
         if (e.target === e.currentTarget) {
             setModalOpen(false);
+            setImageModalOpen(false);
+            setEditModalOpen(false);
+            setEditImageModalOpen(false);
         }
     };
 
@@ -132,28 +151,29 @@ function Post() {
             <Header email={currentPost?.email} />
             <div className="main-container flex gap-[32px] mt-6">
             <Sidebarrr onPostsClick={handlePostsClick} />
-                <main className="w-[768px] h-[1520px] ml-[240px]">
+            <main className="w-[768px] h-[1520px] ml-[240px]">
+                    {/* Табы */}
                     {isTabsVisible && (
                         <div className="mb-4">
                             <div className="tabs w-[307px] h-[40px] p-1 flex items-center border rounded-t-md">
                                 <button
                                     onClick={() => handleTabClick("all")}
                                     className={`tab-trigger w-[96px] h-[32px] flex items-center justify-center
-                    whitespace-nowrap px-4 py-2 ${activeTab === "all" ? "bg-gray-200" : "bg-white hover:bg-slate-100"} rounded`}
+                                    whitespace-nowrap px-4 py-2 ${activeTab === "all" ? "bg-gray-200" : "bg-white hover:bg-slate-100"} rounded`}
                                 >
                                     Все посты
                                 </button>
                                 <button
                                     onClick={() => handleTabClick("mine")}
                                     className={`tab-trigger w-[100px] h-[32px] flex items-center justify-center
-                    whitespace-nowrap px-4 py-2 ${activeTab === "mine" ? "bg-gray-200" : "bg-white hover:bg-slate-100"} rounded`}
+                                    whitespace-nowrap px-4 py-2 ${activeTab === "mine" ? "bg-gray-200" : "bg-white hover:bg-slate-100"} rounded`}
                                 >
                                     Мои посты
                                 </button>
                                 <button
                                     onClick={() => handleTabClick("drafts")}
                                     className={`tab-trigger w-[101px] h-[32px] flex items-center justify-center
-                    whitespace-nowrap px-4 py-2 ${activeTab === "drafts" ? "bg-gray-200" : "bg-white hover:bg-slate-100"} rounded`}
+                                    whitespace-nowrap px-4 py-2 ${activeTab === "drafts" ? "bg-gray-200" : "bg-white hover:bg-slate-100"} rounded`}
                                 >
                                     Черновики
                                 </button>
@@ -162,24 +182,33 @@ function Post() {
                                 <button
                                     className="create-post-button mt-4 w-[768px] h-[40px] px-4 py-2 text-white bg-[#0F172A] rounded-tl-md
                                     focus:opacity-100 opacity-100 hover:bg-gray-800 transition-all duration-200"
-                                    onClick={handleCreatePostClick}
+                                    onClick={() => setModalOpen(true)}
                                 >
                                     Создать пост
                                 </button>
                             )}
                         </div>
                     )}
-                    {posts.map((post) => (
-                        <PostDetail
-                            key={post.id}
-                            post={post}
-                            activeTab={activeTab}
-                            currentPostId={currentPost?.id || null}
-                            onPostClick={setCurrentPost}
-                            onEditPostClick={handleEditPostClick}
-                        />
-                    ))}
-
+                    {currentPost ? (
+                        <SinglePost post={currentPost} />
+                    ) : (
+                        posts
+                            .filter((post) => {
+                                if (activeTab === "all") return true;
+                                if (activeTab === "mine") return true;
+                                if (activeTab === "drafts") return true;
+                                return false;
+                            })
+                            .map((post) => (
+                                <PostDetail
+                                    key={post.id}
+                                    post={post}
+                                    onPostClick={handlePostClick}
+                                    activeTab={activeTab}
+                                    onEditPostClick={() => console.log("Редактировать", post.id)}
+                                />
+                            ))
+                    )}
                 </main>
                 <aside>
                     <img src={adv} alt="Баннер" className="w-[208px] h-auto" />

@@ -1,6 +1,6 @@
-import React from 'react';
-import avatar from '../../assets/avatar.svg';
-import iconButtons from '../../assets/icon buttons.svg';
+import React from "react";
+import avatar from "../../assets/avatar.svg";
+import iconButtons from "../../assets/icon buttons.svg";
 
 type Post = {
     id: number;
@@ -14,11 +14,12 @@ type PostDetailProps = {
     post: Post;
     activeTab: string;
     currentPostId: number | null;
+    selectedPostId: number | null;
     onPostClick: (post: Post) => void;
     onEditPostClick: () => void;
 };
 
-const PostDetail: React.FC<PostDetailProps> = ({ post, activeTab, onPostClick, onEditPostClick }) => { /*, currentPostId*/
+const PostDetail: React.FC<PostDetailProps> = ({ post, activeTab, currentPostId, selectedPostId, onPostClick, onEditPostClick }) => {
     return (
         <article
             key={post.id}
@@ -36,15 +37,18 @@ const PostDetail: React.FC<PostDetailProps> = ({ post, activeTab, onPostClick, o
             <section className="post-content mt-4"></section>
             <p className="text-sm text-gray-600 mt-2">{post.content}</p>
             <div className="mt-4">
-                                <img src={iconButtons} alt="icon buttons" className="h-6" />
-                            </div>
+                <img src={iconButtons} alt="icon buttons" className="h-6" />
+            </div>
             {activeTab === "drafts" && (
-            /*{activeTab === "drafts" && currentPostId === post.id && (*/
                 <div className="post-actions-container flex items-center gap-2 w-[313px] h-[40px] mt-4">
                     <button
                         className="publish-button whitespace-nowrap flex items-center justify-center w-[167px] h-[40px] px-4 py-2 gap-2 bg-gray-100 text-gray-700
                         rounded-tl-md rounded-bl-md hover:bg-[#0F172A] hover:text-[#F1F5F9] focus:bg-[#0F172A]
                         focus:text-[#F1F5F9] transition-all duration-200"
+                        onClick={(e) => {
+                            e.stopPropagation(); // Предотвращает переход на страницу поста при клике на кнопку
+                            console.log("Опубликовать пост", post.id);
+                        }}
                     >
                         Опубликовать
                     </button>
@@ -52,7 +56,10 @@ const PostDetail: React.FC<PostDetailProps> = ({ post, activeTab, onPostClick, o
                         className="edit-button whitespace-nowrap flex items-center justify-center w-[128px] h-[40px] px-4 py-2 bg-gray-100 text-gray-700
                         rounded-tr-md rounded-br-md hover:bg-[#0F172A] hover:text-[#F1F5F9] focus:bg-[#0F172A]
                         focus:text-[#F1F5F9] transition-all duration-200"
-                        onClick={onEditPostClick}
+                        onClick={(e) => {
+                            e.stopPropagation(); // Предотвращает переход на страницу поста при клике на кнопку
+                            onEditPostClick();
+                        }}
                     >
                         Редактировать
                     </button>
