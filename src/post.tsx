@@ -2,6 +2,7 @@ import { useState } from "react";
 {/*import { useNavigate } from "react-router-dom";*/}
 import adv from './assets/adv.png';
 import PostDetail from './components/ui/PostDetail.tsx';
+import SinglePost from "@/components/ui/SinglePost";
 import Header from './components/ui/Header.tsx';
 import Sidebarrr from './components/ui/Sidebarrr.tsx';
 import trash from './assets/trash.svg';
