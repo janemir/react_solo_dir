@@ -42,22 +42,15 @@ const posts: Post[] = [
 ];
 
 function Post() {
-    const [currentPost] = useState<Post>(posts[0]);{/*, setCurrentPost*/}
+    const [currentPost, setCurrentPost] = useState<Post>(posts[0]);
     const [isTabsVisible, setTabsVisible] = useState(true);
-    {/*const [visiblePostButtons, setVisiblePostButtons] = useState<number | null>(null);*/}
+    {/*const [visiblePostButtons, setVisiblePostButtons] = useState<number | null>(null);*/ }
     const [activeTab, setActiveTab] = useState<string>("all");
     const [isModalOpen, setModalOpen] = useState(false);
     const [isImageModalOpen, setImageModalOpen] = useState(false);
     const [isEditModalOpen, setEditModalOpen] = useState(false);
     const [isEditImageModalOpen, setEditImageModalOpen] = useState(false);
     const navigate = useNavigate();
-
-    const handlePostClick_ = (postId: number) => {
-        if (activeTab === "drafts") {
-            return;
-        }
-        navigate(`/posts/${postId}`); 
-    };
 
     const handleLogout = () => {
         navigate("/");
@@ -207,16 +200,16 @@ function Post() {
                         </div>
                     )}
                     {posts.map((post) => (
-            <PostDetail
-            key={post.id}
-            post={post}
-            activeTab={activeTab}
-            currentPostId={currentPost?.id || null}
-            onPostClick={() => handlePostClick_(post.id)} // Передаем обработчик клика
-            onEditPostClick={handleEditPostClick}
-        />
-        ))}
-                          
+                        <PostDetail
+                            key={post.id}
+                            post={post}
+                            activeTab={activeTab}
+                            currentPostId={currentPost?.id || null}
+                            onPostClick={setCurrentPost}
+                            onEditPostClick={handleEditPostClick}
+                        />
+                    ))}
+
                 </main>
                 <aside>
                     <img src={adv} alt="Баннер" className="w-[208px] h-auto" />
@@ -301,7 +294,7 @@ function Post() {
                                     className="w-[167px] px-4 py-2 bg-[#E2E8F0] border  text-[#0F172A] text-[14px] font-medium rounded-[6px] hover:bg-[#0F172A] hover:text-white"
                                     onClick={handleCloseModal}
                                 >
-                                    Опубликоватть пост
+                                    Опубликовать пост
                                 </button>
                                 <button
                                     className="w-[196px] px-4 py-2 bg-[#E2E8F0] border  text-[#0F172A] text-[14px] font-medium rounded-[6px] hover:bg-[#0F172A] hover:text-white"

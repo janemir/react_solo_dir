@@ -14,14 +14,14 @@ type PostDetailProps = {
     post: Post;
     activeTab: string;
     currentPostId: number | null;
-    selectedPostId: number | null;
     onPostClick: (post: Post) => void;
     onEditPostClick: () => void;
 };
 
-const PostDetail: React.FC<PostDetailProps> = ({ post, activeTab, selectedPostId, onPostClick, onEditPostClick }) => {
+const PostDetail: React.FC<PostDetailProps> = ({ post, activeTab, currentPostId, onPostClick, onEditPostClick }) => {
     return (
         <article
+            key={post.id}
             className="post bg-white p-6 rounded shadow hover:bg-gray-200 transition-colors"
             onClick={() => onPostClick(post)}
         >
@@ -33,17 +33,17 @@ const PostDetail: React.FC<PostDetailProps> = ({ post, activeTab, selectedPostId
                 </div>
             </div>
             <h2 className="font-inter text-h4 font-h4 text-left">{post.title}</h2>
+            <section className="post-content mt-4"></section>
             <p className="text-sm text-gray-600 mt-2">{post.content}</p>
-            {activeTab === "drafts" && selectedPostId === post.id && (
+            <div className="mt-4">
+                                <img src={iconButtons} alt="icon buttons" className="h-6" />
+                            </div>
+            {activeTab === "drafts" && currentPostId === post.id && (
                 <div className="post-actions-container flex items-center gap-2 w-[313px] h-[40px] mt-4">
                     <button
                         className="publish-button whitespace-nowrap flex items-center justify-center w-[167px] h-[40px] px-4 py-2 gap-2 bg-gray-100 text-gray-700
                         rounded-tl-md rounded-bl-md hover:bg-[#0F172A] hover:text-[#F1F5F9] focus:bg-[#0F172A]
                         focus:text-[#F1F5F9] transition-all duration-200"
-                        onClick={(e) => {
-                            e.stopPropagation();
-                            console.log("Опубликовать пост");
-                        }}
                     >
                         Опубликовать
                     </button>
@@ -51,10 +51,7 @@ const PostDetail: React.FC<PostDetailProps> = ({ post, activeTab, selectedPostId
                         className="edit-button whitespace-nowrap flex items-center justify-center w-[128px] h-[40px] px-4 py-2 bg-gray-100 text-gray-700
                         rounded-tr-md rounded-br-md hover:bg-[#0F172A] hover:text-[#F1F5F9] focus:bg-[#0F172A]
                         focus:text-[#F1F5F9] transition-all duration-200"
-                        onClick={(e) => {
-                            e.stopPropagation();
-                            onEditPostClick();
-                        }}
+                        onClick={onEditPostClick}
                     >
                         Редактировать
                     </button>
@@ -63,6 +60,5 @@ const PostDetail: React.FC<PostDetailProps> = ({ post, activeTab, selectedPostId
         </article>
     );
 };
-
 
 export default PostDetail;
