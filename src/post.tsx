@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+{/*import { useNavigate } from "react-router-dom";*/}
 import adv from './assets/adv.png';
 import PostDetail from './components/ui/PostDetail.tsx';
 import Header from './components/ui/Header.tsx';
