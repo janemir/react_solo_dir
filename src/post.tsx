@@ -1,12 +1,11 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import adv from './assets/adv.png';
-import avatar from './assets/avatar.svg';
-import logo from './assets/logo.svg';
 import newspaper from './assets/newspaper.svg';
 import phone from './assets/phone.svg';
 import logout from './assets/log-out.svg';
 import PostDetail from './components/ui/PostDetail.tsx';
+import Header from './components/ui/Header.tsx';
 import trash from './assets/trash.svg';
 import upload from './assets/upload.svg';
 
@@ -131,16 +130,7 @@ function Post() {
 
     return (
         <div className="container mx-auto w-[1248px]">
-            <header className="header w-full h-[80px] p-4 bg-white flex justify-between items-center">
-                <div>
-                    <img src={logo} alt="Логотип" className="w-72px h-20px" />
-                </div>
-                <div className="flex items-center space-x-4 relative left-[10px]">
-                    <p className="text-gray-700">{currentPost.email}</p>
-                    <img src={avatar} alt="Аватар" className="h-10 w-10 rounded-full" />
-                </div>
-
-            </header>
+            <Header email={currentPost?.email} />
             <div className="main-container flex gap-[32px] mt-6">
                 <aside className="fixed top-[80px] w-[208px] h-[872px] bg-white flex flex-col justify-between p-4">
 
