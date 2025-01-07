@@ -54,10 +54,9 @@ function Post() {
 
     const handlePostClick_ = (postId: number) => {
         if (activeTab === "drafts") {
-            // Если вкладка "Черновики", ничего не делаем
             return;
         }
-        navigate(`/posts/${postId}`); // Перенаправление на страницу поста
+        navigate(`/posts/${postId}`); 
     };
 
     const handleLogout = () => {
