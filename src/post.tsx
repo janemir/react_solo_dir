@@ -301,7 +301,7 @@ function Post() {
                                     className="w-[167px] px-4 py-2 bg-[#E2E8F0] border  text-[#0F172A] text-[14px] font-medium rounded-[6px] hover:bg-[#0F172A] hover:text-white"
                                     onClick={handleCloseModal}
                                 >
-                                    Опубликовать пост
+                                    Опубликоватть пост
                                 </button>
                                 <button
                                     className="w-[196px] px-4 py-2 bg-[#E2E8F0] border  text-[#0F172A] text-[14px] font-medium rounded-[6px] hover:bg-[#0F172A] hover:text-white"
