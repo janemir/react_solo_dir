@@ -205,7 +205,8 @@ function Post() {
                                     post={post}
                                     onPostClick={handlePostClick}
                                     activeTab={activeTab}
-                                    onEditPostClick={() => console.log("Редактировать", post.id)}
+                                
+                                    onEditPostClick={handleEditPostClick}
                                 />
                             ))
                     )}
