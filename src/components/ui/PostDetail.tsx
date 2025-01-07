@@ -38,7 +38,8 @@ const PostDetail: React.FC<PostDetailProps> = ({ post, activeTab, currentPostId,
             <div className="mt-4">
                                 <img src={iconButtons} alt="icon buttons" className="h-6" />
                             </div>
-            {activeTab === "drafts" && currentPostId === post.id && (
+            {activeTab === "drafts" && (
+            /*{activeTab === "drafts" && currentPostId === post.id && (*/
                 <div className="post-actions-container flex items-center gap-2 w-[313px] h-[40px] mt-4">
                     <button
                         className="publish-button whitespace-nowrap flex items-center justify-center w-[167px] h-[40px] px-4 py-2 gap-2 bg-gray-100 text-gray-700
