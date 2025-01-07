@@ -18,7 +18,7 @@ type PostDetailProps = {
     onEditPostClick: () => void;
 };
 
-const PostDetail: React.FC<PostDetailProps> = ({ post, activeTab, currentPostId, onPostClick, onEditPostClick }) => {
+const PostDetail: React.FC<PostDetailProps> = ({ post, activeTab, onPostClick, onEditPostClick }) => { /*, currentPostId*/
     return (
         <article
             key={post.id}
