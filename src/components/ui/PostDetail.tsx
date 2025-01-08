@@ -19,7 +19,7 @@ type PostDetailProps = {
     onEditPostClick: () => void;
 };
 
-const PostDetail: React.FC<PostDetailProps> = ({ post, activeTab, currentPostId, selectedPostId, onPostClick, onEditPostClick }) => {
+const PostDetail: React.FC<PostDetailProps> = ({ post, activeTab, onPostClick, onEditPostClick }) => { /* currentPostId, selectedPostId, */
     return (
         <article
             key={post.id}
@@ -46,7 +46,7 @@ const PostDetail: React.FC<PostDetailProps> = ({ post, activeTab, currentPostId,
                         rounded-tl-md rounded-bl-md hover:bg-[#0F172A] hover:text-[#F1F5F9] focus:bg-[#0F172A]
                         focus:text-[#F1F5F9] transition-all duration-200"
                         onClick={(e) => {
-                            e.stopPropagation(); // Предотвращает переход на страницу поста при клике на кнопку
+                            e.stopPropagation(); 
                             console.log("Опубликовать пост", post.id);
                         }}
                     >
@@ -57,7 +57,7 @@ const PostDetail: React.FC<PostDetailProps> = ({ post, activeTab, currentPostId,
                         rounded-tr-md rounded-br-md hover:bg-[#0F172A] hover:text-[#F1F5F9] focus:bg-[#0F172A]
                         focus:text-[#F1F5F9] transition-all duration-200"
                         onClick={(e) => {
-                            e.stopPropagation(); // Предотвращает переход на страницу поста при клике на кнопку
+                            e.stopPropagation(); 
                             onEditPostClick();
                         }}
                     >
