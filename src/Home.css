@@ -185,11 +185,7 @@ body {
 }
 
 
-section{
-    width: 736px;
-    height: 432px;
-    background-color: #CBD5E1;
-}
+
 
 .right-picture {
     display: flex;

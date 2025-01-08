@@ -20,7 +20,7 @@ const SinglePost: React.FC<SinglePostProps> = ({ post, activeTab, onEditPostClic
     return (
         <article
             key={post.id}
-            className="post bg-white p-6 rounded shadow hover:bg-gray-200 transition-colors"
+            className="post bg-white p-4 rounded shadow hover:bg-gray-200 transition-colors"
         >
             <div className="tag flex items-center space-x-4">
                 <img src={avatar} alt="Аватар" className="h-10 w-10 rounded-full" />
@@ -30,7 +30,7 @@ const SinglePost: React.FC<SinglePostProps> = ({ post, activeTab, onEditPostClic
                 </div>
             </div>
             <h2 className="font-inter text-h4 font-h4 text-left">{post.title}</h2>
-            <section className="post-content mt-4"></section>
+            <section className="post-content mt-4 flex justify-center items-center w-[736px] h-[432px] bg-[#CBD5E1] "></section>
             <p className="text-sm text-gray-600 mt-2">{post.content}</p>
             <div className="mt-4">
                 <img src={iconButtons} alt="icon buttons" className="h-6" />

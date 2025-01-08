@@ -152,10 +152,9 @@ function Post() {
             <div className="main-container flex gap-[32px] mt-6">
                 <Sidebarrr onPostsClick={handlePostsClick} />
                 <main className="w-[768px] h-[1520px] ml-[240px]">
-                    {/* Табы */}
                     {isTabsVisible && (
                         <div className="mb-4">
-                            <div className="tabs w-[307px] h-[40px] p-1 flex items-center border rounded-t-md">
+                            <div className="tabs w-[307px] h-[40px] p-1 flex items-center border rounded-md">
                                 <button
                                     onClick={() => handleTabClick("all")}
                                     className={`tab-trigger w-[96px] h-[32px] flex items-center justify-center
@@ -192,8 +191,8 @@ function Post() {
                     {currentPost ? (
                         <SinglePost
                             post={currentPost}
-                            activeTab={activeTab} 
-                            onEditPostClick={handleEditPostClick} 
+                            activeTab={activeTab}
+                            onEditPostClick={handleEditPostClick}
                         />
                     ) : (
                         posts
@@ -210,8 +209,8 @@ function Post() {
                                     onPostClick={handlePostClick}
                                     activeTab={activeTab}
                                     onEditPostClick={handleEditPostClick}
-                                    //currentPostId={currentPost?.id || null} 
-                                    //selectedPostId={null} 
+                                //currentPostId={currentPost?.id || null} 
+                                //selectedPostId={null} 
                                 />
                             ))
                     )}
