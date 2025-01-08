@@ -9,7 +9,7 @@ const Header: React.FC<{ email?: string }> = ({ email }) => {
                 <img src={logo} alt="Логотип" className="w-72px h-20px" />
             </div>
             <div className="flex items-center space-x-4 relative left-[10px]">
-                <p className="text-gray-700">{email || "Ваш аккаунт"}</p>
+                <p className="text-[#0F172A]">{email || "pochta@gmail.com"}</p>
                 <img src={avatar} alt="Аватар" className="h-10 w-10 rounded-full" />
             </div>
         </header>

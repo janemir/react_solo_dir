@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
-{/*import { useNavigate } from "react-router-dom";*/}
+{/*import { useNavigate } from "react-router-dom";*/ }
 import adv from './assets/adv.png';
 import PostDetail from './components/ui/PostDetail.tsx';
 import Header from './components/ui/Header.tsx';
@@ -41,7 +41,7 @@ const posts: Post[] = [
 ];
 
 function Post() {
-    {/*const [currentPost, setCurrentPost] = useState<Post>(posts[0]);*/}
+    {/*const [currentPost, setCurrentPost] = useState<Post>(posts[0]);*/ }
     const [isTabsVisible, setTabsVisible] = useState(true);
     {/*const [visiblePostButtons, setVisiblePostButtons] = useState<number | null>(null);*/ }
     /*const [activeTab, setActiveTab] = useState<string>("all");*/
@@ -148,10 +148,10 @@ function Post() {
 
     return (
         <div className="container mx-auto w-[1248px]">
-            <Header email={currentPost?.email} />
+            <Header />
             <div className="main-container flex gap-[32px] mt-6">
-            <Sidebarrr onPostsClick={handlePostsClick} />
-            <main className="w-[768px] h-[1520px] ml-[240px]">
+                <Sidebarrr onPostsClick={handlePostsClick} />
+                <main className="w-[768px] h-[1520px] ml-[240px]">
                     {/* Табы */}
                     {isTabsVisible && (
                         <div className="mb-4">
@@ -190,7 +190,11 @@ function Post() {
                         </div>
                     )}
                     {currentPost ? (
-                        <SinglePost post={currentPost} />
+                        <SinglePost
+                            post={currentPost}
+                            activeTab={activeTab} // Передаем текущую вкладку
+                            onEditPostClick={handleEditPostClick} // Передаем обработчик редактирования
+                        />
                     ) : (
                         posts
                             .filter((post) => {
@@ -205,7 +209,6 @@ function Post() {
                                     post={post}
                                     onPostClick={handlePostClick}
                                     activeTab={activeTab}
-                                
                                     onEditPostClick={handleEditPostClick}
                                 />
                             ))
