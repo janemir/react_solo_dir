@@ -192,8 +192,8 @@ function Post() {
                     {currentPost ? (
                         <SinglePost
                             post={currentPost}
-                            activeTab={activeTab} // Передаем текущую вкладку
-                            onEditPostClick={handleEditPostClick} // Передаем обработчик редактирования
+                            activeTab={activeTab} 
+                            onEditPostClick={handleEditPostClick} 
                         />
                     ) : (
                         posts
@@ -210,6 +210,8 @@ function Post() {
                                     onPostClick={handlePostClick}
                                     activeTab={activeTab}
                                     onEditPostClick={handleEditPostClick}
+                                    //currentPostId={currentPost?.id || null} 
+                                    //selectedPostId={null} 
                                 />
                             ))
                     )}

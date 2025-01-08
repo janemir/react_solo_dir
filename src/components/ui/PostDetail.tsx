@@ -13,8 +13,8 @@ type Post = {
 type PostDetailProps = {
     post: Post;
     activeTab: string;
-    currentPostId: number | null;
-    selectedPostId: number | null;
+    //currentPostId: number | null;
+    //selectedPostId: number | null;
     onPostClick: (post: Post) => void;
     onEditPostClick: () => void;
 };
