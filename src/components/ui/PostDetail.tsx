@@ -33,9 +33,9 @@ const PostDetail: React.FC<PostDetailProps> = ({ post, activeTab, onPostClick, o
                     <p className="text-gray-500 text-sm">{post.date}</p>
                 </div>
             </div>
-            <h2 className="font-inter text-h4 font-h4 text-left">{post.title}</h2>
+            <h2 style={{ marginTop: "16px" }} className="font-inter font-semibold text-[20px] text-h4 font-h4 text-left mt-4">{post.title}</h2>
             <section className="post-content mt-4 flex justify-center items-center w-[736px] h-[432px] bg-[#CBD5E1] "></section>
-            <p className="text-sm text-gray-600 mt-2">{post.content}</p>
+            <p className="text-sm text-[#0F172A] mt-2">{post.content}</p>
             <div className="mt-4">
                 <img src={iconButtons} alt="icon buttons" className="h-6" />
             </div>
