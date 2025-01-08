@@ -197,7 +197,7 @@ function Post() {
                         />
                     ) : (
                         posts
-                            .filter((post) => {
+                            .filter(() => { /*post */
                                 if (activeTab === "all") return true;
                                 if (activeTab === "mine") return true;
                                 if (activeTab === "drafts") return true;
