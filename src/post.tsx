@@ -380,7 +380,7 @@ function Post() {
                                     className="w-full h-[40px] mt-1 px-3 py-2 border border-gray-300 rounded-md text-gray-600 bg-white placeholder-gray-400"
                                 />
                             </div>
-                            <section className="post-content relative mt-4 w-[512px] h-[288px] bg-gray-300 rounded-lg group hover:bg-[#a6aeb8]">
+                            <section className="post-content rounded-lg relative mt-4 w-[512px] h-[288px] bg-gray-300 rounded-lg group hover:bg-[#a6aeb8]">
                                 <img
                                     src={trash}
                                     alt="Delete"
