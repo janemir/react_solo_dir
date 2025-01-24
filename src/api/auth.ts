@@ -12,7 +12,7 @@ export async function registerUser(email: string, password: string, role: string
         throw new Error(error.message || "Ошибка регистрации");
     }
 
-    return await response.json(); // Ответ сервера
+    return await response.json(); 
 }
 
 export async function loginUser(email: string, password: string) {
@@ -27,5 +27,20 @@ export async function loginUser(email: string, password: string) {
         throw new Error(error.message || "Ошибка входа");
     }
 
-    return await response.json(); // { accessToken, refreshToken }
+    return await response.json(); 
+}
+
+export async function refreshAccessToken(refreshToken: string) {
+    const response = await fetch(`${API_URL}/refresh-token`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ refreshToken }), 
+    });
+
+    if (!response.ok) {
+        const error = await response.json();
+        throw new Error(error.message || "Ошибка обновления токена");
+    }
+
+    return await response.json(); 
 }
