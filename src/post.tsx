@@ -64,9 +64,9 @@ function Post() {
         navigate(`/post/${post.id}`);
     };
 
-    const handlePostsClick = () => {
+    {/*const handlePostsClick = () => {
         setTabsVisible(!isTabsVisible);
-    };
+    };*/}
 
     {/*const handlePostClick = (post: Post) => {
         setCurrentPost(post);
