@@ -1,6 +1,7 @@
 import React from "react";
 import avatar from "../../assets/avatar.svg";
 import iconButtons from "../../assets/icon buttons.svg";
+import { useAuth } from "@/components/ui/AuthContext"; 
 
 type Post = {
     id: number;
@@ -17,6 +18,7 @@ type SinglePostProps = {
 };
 
 const SinglePost: React.FC<SinglePostProps> = ({ post, activeTab, onEditPostClick }) => {
+    const { email } = useAuth();
     return (
         <article
             key={post.id}
@@ -25,7 +27,7 @@ const SinglePost: React.FC<SinglePostProps> = ({ post, activeTab, onEditPostClic
             <div className="tag flex items-center space-x-4 ">
                 <img src={avatar} alt="Аватар" className="h-10 w-10 rounded-full" />
                 <div>
-                    <p className="text-gray-700">{post.email}</p>
+                    <p className="text-gray-700">{email || post.email}</p> {/* Используем email из контекста */}
                     <p className="text-gray-500 text-sm">{post.date}</p>
                 </div>
             </div>

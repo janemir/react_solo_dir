@@ -4,17 +4,25 @@ import { Button } from "@/components/ui/button";
 import { Link, useNavigate } from "react-router-dom";
 import { loginUser } from "@/api/auth";
 import { useState } from "react";
+import { useAuth } from "@/components/ui/AuthContext"; // Импортируем AuthContext
 
 function Login() {
     const navigate = useNavigate();
-    const [email, setEmail] = useState("");
+    const { setEmail } = useAuth(); // Получаем функцию для сохранения email из контекста
+    const [email, setLocalEmail] = useState(""); // Локальное состояние для ввода email
     const [password, setPassword] = useState("");
 
     const handleLogin = async () => {
         try {
             const { accessToken, refreshToken } = await loginUser(email, password);
+            
+            // Сохраняем токены в localStorage
             localStorage.setItem("accessToken", accessToken);
             localStorage.setItem("refreshToken", refreshToken);
+            
+            // Сохраняем email в глобальном контексте
+            setEmail(email);
+
             alert("Вход выполнен!");
             navigate("/post");
         } catch (error) {
@@ -31,7 +39,7 @@ function Login() {
                 id="email"
                 placeholder="Введите почту"
                 value={email}
-                onChange={(e) => setEmail(e.target.value)}
+                onChange={(e) => setLocalEmail(e.target.value)} // Обновляем локальное состояние
             />
             <Label htmlFor="password">Пароль</Label>
             <Input
@@ -39,7 +47,7 @@ function Login() {
                 type="password"
                 placeholder="Введите пароль"
                 value={password}
-                onChange={(e) => setPassword(e.target.value)}
+                onChange={(e) => setPassword(e.target.value)} // Обновляем локальное состояние
             />
             <Button onClick={handleLogin}>Войти</Button>
             <div className="auth-container">

@@ -8,9 +8,11 @@ import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import "./Home.css";
 import { registerUser } from "@/api/auth";
 import { useState } from "react";
+import { AuthProvider } from "@/components/ui/AuthContext";
 
 function App() {
     return (
+        <AuthProvider>
         <Router>
             <Routes>
                 <Route path="/" element={<Home />} />
@@ -19,6 +21,7 @@ function App() {
                 <Route path="/post/:id" element={<Post />} />
             </Routes>
         </Router>
+        </AuthProvider>
     );
 }
 
