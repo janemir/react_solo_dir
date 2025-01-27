@@ -58,6 +58,7 @@ function Post() {
     const { id } = useParams<{ id: string }>();
     const navigate = useNavigate();
     const currentPost = id ? posts.find((p) => p.id === Number(id)) : null;
+    const userRole = localStorage.getItem("userRole");
 
     const handlePostClick = (post: { id: number }) => {
         navigate(`/post/${post.id}`);
@@ -150,9 +151,9 @@ function Post() {
         <div className="container mx-auto w-[1248px]">
             <Header />
             <div className="main-container flex gap-[32px] mt-6">
-                <Sidebarrr onPostsClick={handlePostsClick} />
+            <Sidebarrr onPostsClick={() => setTabsVisible(!isTabsVisible)} />
                 <main className="w-[768px] ml-[240px]">
-                    {isTabsVisible && (
+                {userRole !== "reader" && isTabsVisible && (
                         <div className="mb-4">
                             <div className="tabs w-[307px] h-[40px] p-1 flex items-center border rounded-md">
                                 <button

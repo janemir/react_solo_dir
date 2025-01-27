@@ -37,9 +37,10 @@ function Home() {
             alert("Пароли не совпадают");
             return;
         }
-
+    
         try {
             await registerUser(email, password, role);
+            localStorage.setItem("userRole", role); // Сохранение роли в localStorage
             alert("Регистрация успешна!");
             navigate("/login");
         } catch (error) {
