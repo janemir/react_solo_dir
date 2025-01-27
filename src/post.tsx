@@ -216,7 +216,7 @@ function Post() {
                     )}
                 </main>
                 <aside>
-                    <img src={adv} alt="Баннер" className="w-[208px] h-auto" />
+                    <img src={adv} alt="Баннер" className="w-[208px] h-auto bg-[#1234]" />
                 </aside>
                 {isModalOpen && (
                     <div className="modal fixed top-0 left-0 w-full h-full bg-black bg-opacity-50 flex items-center justify-center" onClick={handleModalClick}>
