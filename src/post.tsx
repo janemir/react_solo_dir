@@ -151,7 +151,7 @@ function Post() {
             <Header />
             <div className="main-container flex gap-[32px] mt-6">
                 <Sidebarrr onPostsClick={handlePostsClick} />
-                <main className="w-[768px] h-[1520px] ml-[240px]">
+                <main className="w-[768px] ml-[240px]">
                     {isTabsVisible && (
                         <div className="mb-4">
                             <div className="tabs w-[307px] h-[40px] p-1 flex items-center border rounded-md">
