@@ -16,7 +16,7 @@ const Sidebarrr: React.FC<SidebarProps> = ({ onPostsClick }) => {
     };
 
     return (
-        <aside className="fixed top-[80px] w-[208px] h-[872px] bg-white flex flex-col justify-between p-4">
+        <aside className="fixed top-[80px] w-[208px] h-[872px] flex flex-col justify-between p-4">
             <div className="flex flex-col space-y-2">
                 {/* Кнопка "Посты" */}
                 <div
