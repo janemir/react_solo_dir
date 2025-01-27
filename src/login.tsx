@@ -22,7 +22,6 @@ function Login() {
 
             setEmail(email);
 
-            alert("Вход выполнен!");
             navigate("/post");
         } catch (error) {
             console.error("Ошибка входа:", error);
