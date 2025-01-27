@@ -4,30 +4,29 @@ import { Button } from "@/components/ui/button";
 import { Link, useNavigate } from "react-router-dom";
 import { loginUser } from "@/api/auth";
 import { useState } from "react";
-import { useAuth } from "@/components/ui/AuthContext"; // Импортируем AuthContext
+import { useAuth } from "@/components/ui/AuthContext";
 
 function Login() {
     const navigate = useNavigate();
-    const { setEmail } = useAuth(); // Получаем функцию для сохранения email из контекста
-    const [email, setLocalEmail] = useState(""); // Локальное состояние для ввода email
+    const { setEmail } = useAuth(); 
+    const [email, setLocalEmail] = useState(""); 
     const [password, setPassword] = useState("");
+    const [errorMessage, setErrorMessage] = useState("");
 
     const handleLogin = async () => {
         try {
             const { accessToken, refreshToken } = await loginUser(email, password);
-            
-            // Сохраняем токены в localStorage
+
             localStorage.setItem("accessToken", accessToken);
             localStorage.setItem("refreshToken", refreshToken);
-            
-            // Сохраняем email в глобальном контексте
+
             setEmail(email);
 
             alert("Вход выполнен!");
             navigate("/post");
         } catch (error) {
             console.error("Ошибка входа:", error);
-            alert("Ошибка входа");
+            setErrorMessage("Неверный email или пароль");
         }
     };
 
@@ -39,7 +38,7 @@ function Login() {
                 id="email"
                 placeholder="Введите почту"
                 value={email}
-                onChange={(e) => setLocalEmail(e.target.value)} // Обновляем локальное состояние
+                onChange={(e) => setLocalEmail(e.target.value)} 
             />
             <Label htmlFor="password">Пароль</Label>
             <Input
@@ -47,8 +46,15 @@ function Login() {
                 type="password"
                 placeholder="Введите пароль"
                 value={password}
-                onChange={(e) => setPassword(e.target.value)} // Обновляем локальное состояние
+                onChange={(e) => setPassword(e.target.value)} 
             />
+
+            <div className="error-container h-[24px] mt-2">
+                {errorMessage && (
+                    <p className="text-red-500 text-sm">{errorMessage}</p>
+                )}
+            </div>
+
             <Button onClick={handleLogin}>Войти</Button>
             <div className="auth-container">
                 <Label className="auth-text">Нет аккаунта?</Label>

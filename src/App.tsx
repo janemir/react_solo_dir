@@ -30,28 +30,35 @@ function Home() {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [repeatPassword, setRepeatPassword] = useState("");
-    const [role, setRole] = useState("reader"); // Роль по умолчанию
+    const [role, setRole] = useState("reader"); 
+    const [errorMessage, setErrorMessage] = useState(""); 
+    const [hasError, setHasError] = useState(false); 
 
     const handleRegister = async () => {
+        setErrorMessage("");
+        setHasError(false);
+
         if (password !== repeatPassword) {
-            alert("Пароли не совпадают");
+            setErrorMessage("Пароли не совпадают");
+            setHasError(true);
             return;
         }
-    
+
         try {
             await registerUser(email, password, role);
-            localStorage.setItem("userRole", role); // Сохранение роли в localStorage
-            alert("Регистрация успешна!");
+            localStorage.setItem("userRole", role); 
             navigate("/login");
         } catch (error) {
             console.error("Ошибка регистрации:", error);
-            alert("Ошибка регистрации");
+            setErrorMessage("Ошибка регистрации");
+            setHasError(true);
         }
     };
 
     return (
         <div className="form-container bg-white rounded-[12px]">
             <h4 className="label-create-account">Создать аккаунт</h4>
+
             <div className="form-input-group">
                 <Label htmlFor="email">Почта</Label>
                 <Input
@@ -59,8 +66,10 @@ function Home() {
                     placeholder="Введите почту"
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
+                    className={`${hasError ? "border-red-500" : ""} border rounded px-3 py-2`}
                 />
             </div>
+
             <div className="form-input-group">
                 <Label htmlFor="password">Пароль</Label>
                 <Input
@@ -69,8 +78,10 @@ function Home() {
                     type="password"
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
+                    className={`${hasError ? "border-red-500" : ""} border rounded px-3 py-2`}
                 />
             </div>
+
             <div className="form-input-group">
                 <Label htmlFor="repeat_password">Повторите пароль</Label>
                 <Input
@@ -79,8 +90,10 @@ function Home() {
                     type="password"
                     value={repeatPassword}
                     onChange={(e) => setRepeatPassword(e.target.value)}
+                    className={`${hasError ? "border-red-500" : ""} border rounded px-3 py-2`}
                 />
             </div>
+
             <div className="select-role-group">
                 <Label htmlFor="select_role">Выберите роль</Label>
                 <Tabs defaultValue="reader" onValueChange={(value) => setRole(value)}>
@@ -94,7 +107,15 @@ function Home() {
                     </TabsList>
                 </Tabs>
             </div>
+
+            {errorMessage && (
+                <div className="error-message text-red-500 text-sm mb-4">
+                    {errorMessage}
+                </div>
+            )}
+
             <Button onClick={handleRegister}>Создать аккаунт</Button>
+
             <div className="auth-container">
                 <Label className="auth-text">Уже есть аккаунт?</Label>
                 <Link to="/login" className="auth-link">
@@ -104,6 +125,5 @@ function Home() {
         </div>
     );
 }
-
 
 export default App;
