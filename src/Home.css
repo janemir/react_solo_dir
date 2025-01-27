@@ -28,11 +28,11 @@ body {
 
 .form-input-group {
     width: 384px;
-    height: auto; /* "Hug" означает адаптацию по контенту */
+    height: auto; 
     gap: 6px;
     display: flex;
-    flex-direction: column; /* Размещает метки и инпуты вертикально */
-    opacity: 1; /* Поменял с 0 на 1, чтобы элементы отображались */
+    flex-direction: column; 
+    opacity: 1; 
 }
 
 .form-input-group label {
@@ -56,11 +56,11 @@ body {
 
 .select-role-group {
     width: 166px;
-    height: auto; /* Hug: высота адаптируется к содержимому */
+    height: auto; 
     gap: 6px;
     display: flex;
     flex-direction: column;
-    opacity: 1; /* Установил видимость */
+    opacity: 1; 
 }
 
 .select-role-group label {
@@ -101,10 +101,10 @@ body {
     padding: 5px 0 0 0;
     gap: 0px;
     border-radius: 6px 0 0 0;
-    opacity: 1; /* Установлено для видимости */
+    opacity: 1; 
     display: flex;
     flex-direction: column;
-    background-color: #F8FAFC; /* Для примера */
+    background-color: #F8FAFC; 
 }
 
 .tabs-list {
@@ -159,22 +159,21 @@ body {
 }
 
 .login-form {
-    width: 416px; /* Hug (416px) */
-    height: 320px; /* Hug (320px) */
-    padding: 16px; /* Верхний отступ */
-    gap: 16px; /* Расстояние между элементами */
+    width: 416px; 
+    height: 320px; 
+    padding: 16px; 
+    gap: 16px; 
     border-radius: 12px 0 0 0;
-    opacity: 1; /* Заменить на 0, если должно быть скрыто */
+    opacity: 1; 
     display: flex;
     flex-direction: column;
 }
 
 .auth-container{
-    width: 216px; /* Hug (416px) */
+    width: 216px;
     height: 24px;
 }
 
-/* Центральный контент */
 .content-center {
     flex: 2;
 }
