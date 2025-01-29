@@ -79,7 +79,7 @@ function Post() {
 
     const handleTabClick = (tab: string) => {
         setActiveTab(tab);
-        navigate("/post"); // Вернуться к списку постов при переключении табов
+        navigate("/post");
     };
 
     /*const handleCreatePostClick = () => {
@@ -151,9 +151,12 @@ function Post() {
         <div className="container mx-auto w-[1248px]">
             <Header />
             <div className="main-container flex gap-[32px] mt-6">
-            <Sidebarrr onPostsClick={() => setTabsVisible(!isTabsVisible)} />
-                <main className="w-[768px] ml-[240px]">
-                {userRole !== "reader" && isTabsVisible && (
+                {/* Левый сайдбар */}
+                <aside className="w-[240px] sticky top-6 self-start">
+                    <Sidebarrr onPostsClick={() => setTabsVisible(!isTabsVisible)} />
+                </aside>
+                <main className="w-[768px]">
+                    {userRole !== "reader" && isTabsVisible && (
                         <div className="mb-4">
                             <div className="tabs w-[307px] h-[40px] p-1 flex items-center border rounded-md">
                                 <button
