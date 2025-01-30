@@ -1,6 +1,5 @@
 import { useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
-{/*import { useNavigate } from "react-router-dom";*/ }
 import adv from './assets/adv.png';
 import PostDetail from './components/ui/PostDetail.tsx';
 import Header from './components/ui/Header.tsx';
@@ -41,20 +40,12 @@ const posts: Post[] = [
 ];
 
 function Post() {
-    {/*const [currentPost, setCurrentPost] = useState<Post>(posts[0]);*/ }
     const [isTabsVisible, setTabsVisible] = useState(true);
-    {/*const [visiblePostButtons, setVisiblePostButtons] = useState<number | null>(null);*/ }
-    /*const [activeTab, setActiveTab] = useState<string>("all");*/
     const [isModalOpen, setModalOpen] = useState(false);
     const [isImageModalOpen, setImageModalOpen] = useState(false);
     const [isEditModalOpen, setEditModalOpen] = useState(false);
     const [isEditImageModalOpen, setEditImageModalOpen] = useState(false);
-    /*const navigate = useNavigate();*/
     const [activeTab, setActiveTab] = useState<string>("all");
-    /*const handleLogout = () => {
-        navigate("/");
-    };*/
-
     const { id } = useParams<{ id: string }>();
     const navigate = useNavigate();
     const currentPost = id ? posts.find((p) => p.id === Number(id)) : null;
@@ -64,27 +55,10 @@ function Post() {
         navigate(`/post/${post.id}`);
     };
 
-    {/*const handlePostsClick = () => {
-        setTabsVisible(!isTabsVisible);
-    };*/}
-
-    {/*const handlePostClick = (post: Post) => {
-        setCurrentPost(post);
-        setVisiblePostButtons(post.id);
-    };*/}
-
-    /*const handleTabClick = (tab: string) => {
-        setActiveTab(tab);
-    };*/
-
     const handleTabClick = (tab: string) => {
         setActiveTab(tab);
         navigate("/post");
     };
-
-    /*const handleCreatePostClick = () => {
-        setModalOpen(true);
-    };*/
 
     const handleAddImageClick = () => {
         setModalOpen(false);
@@ -151,7 +125,6 @@ function Post() {
         <div className="container mx-auto w-[1248px]">
             <Header />
             <div className="main-container flex gap-[32px] mt-6">
-                {/* Левый сайдбар */}
                 <aside className="w-[240px] sticky top-6 self-start">
                     <Sidebarrr onPostsClick={() => setTabsVisible(!isTabsVisible)} />
                 </aside>
@@ -200,7 +173,7 @@ function Post() {
                         />
                     ) : (
                         posts
-                            .filter(() => { /*post */
+                            .filter(() => { 
                                 if (activeTab === "all") return true;
                                 if (activeTab === "mine") return true;
                                 if (activeTab === "drafts") return true;
@@ -213,8 +186,7 @@ function Post() {
                                     onPostClick={handlePostClick}
                                     activeTab={activeTab}
                                     onEditPostClick={handleEditPostClick}
-                                //currentPostId={currentPost?.id || null} 
-                                //selectedPostId={null} 
+                                
                                 />
                             ))
                     )}
