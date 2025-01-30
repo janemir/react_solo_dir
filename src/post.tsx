@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
-import axios from "axios"; 
+import { fetchPosts } from "./api/postService"; // Импортируем функцию запроса
 import adv from './assets/adv.png';
 import PostDetail from './components/ui/PostDetail.tsx';
 import Header from './components/ui/Header.tsx';
@@ -9,7 +9,7 @@ import SinglePost from './components/ui/SinglePost.tsx';
 import trash from './assets/trash.svg';
 import upload from './assets/upload.svg';
 
-type PostType = {
+type Post = {
     id: number;
     title: string;
     date: string;
@@ -17,72 +17,45 @@ type PostType = {
     content: string;
 };
 
-const Post = () => {
-    const [posts, setPosts] = useState<PostType[]>([]);
-    const [error, setError] = useState<string | null>(null);
+function Post() {
     const [isTabsVisible, setTabsVisible] = useState(true);
     const [isModalOpen, setModalOpen] = useState(false);
     const [isImageModalOpen, setImageModalOpen] = useState(false);
     const [isEditModalOpen, setEditModalOpen] = useState(false);
     const [isEditImageModalOpen, setEditImageModalOpen] = useState(false);
     const [activeTab, setActiveTab] = useState<string>("all");
+
+    // Состояния для постов
+    const [posts, setPosts] = useState<Post[]>([]);
+    const [loading, setLoading] = useState(true);
+    const [error, setError] = useState<string | null>(null);
+
     const { id } = useParams<{ id: string }>();
     const navigate = useNavigate();
+    const userRole = localStorage.getItem("userRole");
 
+    // Загружаем посты с бэкенда
     useEffect(() => {
-        const fetchPosts = async () => {
+        async function loadPosts() {
             try {
-                const token = localStorage.getItem("accessToken");
-                if (!token) {
-                    console.error("Токен отсутствует. Перенаправление на страницу входа.");
-                    navigate("/login");
-                    return;
-                }
-    
-                const response = await axios.get("/api/posts", {
-                    headers: {
-                        Authorization: `Bearer ${token}`,
-                        accept: '*/*'
-                    }
-                });
-    
-                if (response.status === 200) {
-                    processResponseData(response.data);
-                } else {
-                    setError("Ошибка при получении постов");
-                    console.error("Ошибка при получении постов:", response.status);
-                }
-            } catch (error) {
-                setError("Ошибка при получении постов");
-                console.error("Ошибка при получении постов:", error);
-            }
-        };
-
-        const processResponseData = (data: any) => {
-            if (Array.isArray(data)) {
+                const data = await fetchPosts();
+                console.log("Загруженные посты:", data); // Проверяем, что вернул API
                 setPosts(data);
-            } else if (typeof data === 'object' && data !== null) {
-                if (data.posts && Array.isArray(data.posts)) {
-                    setPosts(data.posts);
-                } else {
-                    setPosts([data]);
-                }
-            } else if (typeof data === 'string') {
-                setError(data);
-                setPosts([]);
-            } else {
-                setError("Неизвестный формат данных");
-                setPosts([]);
+            } catch (error) {
+                setError(error instanceof Error ? error.message : "Ошибка загрузки");
+            } finally {
+                setLoading(false);
             }
-        };
+        }
 
-        fetchPosts();
-    }, [navigate]);
-    
-    
+        loadPosts();
+    }, []);
+
+    // Если идет загрузка — показываем текст "Загрузка..."
+    if (loading) return <p>Загрузка...</p>;
+    if (error) return <p className="text-red-500">Ошибка: {error}</p>;
 
     const currentPost = id ? posts.find((p) => p.id === Number(id)) : null;
-    const userRole = localStorage.getItem("userRole");
 
     const handlePostClick = (post: { id: number }) => {
         navigate(`/post/${post.id}`);
@@ -107,7 +80,10 @@ const Post = () => {
 
     const handleModalClick = (e: React.MouseEvent<HTMLDivElement>) => {
         if (e.target === e.currentTarget) {
-            handleCloseModal();
+            setModalOpen(false);
+            setImageModalOpen(false);
+            setEditModalOpen(false);
+            setEditImageModalOpen(false);
         }
     };
 
@@ -158,11 +134,7 @@ const Post = () => {
                 <aside className="w-[240px] sticky top-6 self-start">
                     <Sidebarrr onPostsClick={() => setTabsVisible(!isTabsVisible)} />
                 </aside>
-                <div>
-                {error && <p style={{ color: 'red' }}>{error}</p>}
-                {posts.length === 0 && !error && <p>Нет доступных постов.</p>}
-                
-            </div>
+
                 <main className="w-[768px]">
                     {userRole !== "reader" && isTabsVisible && (
                         <div className="mb-4">
@@ -198,7 +170,15 @@ const Post = () => {
                                     Создать пост
                                 </button>
                             )}
+                            <div>
+                                {posts.length > 0 ? (
+                                    posts.map((post) => <Post key={post.id} {...post} />)
+                                ) : (
+                                    <p>Загрузка...</p>
+                                )}
+                            </div>
                         </div>
+
                     )}
                     {currentPost ? (
                         <SinglePost
@@ -208,7 +188,7 @@ const Post = () => {
                         />
                     ) : (
                         posts
-                            .filter(() => { 
+                            .filter(() => {
                                 if (activeTab === "all") return true;
                                 if (activeTab === "mine") return true;
                                 if (activeTab === "drafts") return true;
@@ -221,7 +201,7 @@ const Post = () => {
                                     onPostClick={handlePostClick}
                                     activeTab={activeTab}
                                     onEditPostClick={handleEditPostClick}
-                                
+
                                 />
                             ))
                     )}
