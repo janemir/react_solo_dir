@@ -1,5 +1,6 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
+import axios from "axios"; 
 import adv from './assets/adv.png';
 import PostDetail from './components/ui/PostDetail.tsx';
 import Header from './components/ui/Header.tsx';
@@ -8,7 +9,7 @@ import SinglePost from './components/ui/SinglePost.tsx';
 import trash from './assets/trash.svg';
 import upload from './assets/upload.svg';
 
-type Post = {
+type PostType = {
     id: number;
     title: string;
     date: string;
@@ -16,30 +17,9 @@ type Post = {
     content: string;
 };
 
-const posts: Post[] = [
-    {
-        id: 1,
-        title: "Заголовок",
-        date: "31 октября",
-        email: "pochta@gmail.com",
-        content:
-            "Повседневная практика показывает, что социально-экономическое развитие способствует подготовке и реализации " +
-            "распределения внутренних резервов и ресурсов. Предварительные выводы неутешительны: перспективное планирование " +
-            "не даёт нам иного выбора, кроме определения экономической целесообразности принимаемых решений.",
-    },
-    {
-        id: 2,
-        title: "Заголовок",
-        date: "31 октября",
-        email: "pochta@gmail.com",
-        content:
-            "Повседневная практика показывает, что социально-экономическое развитие способствует подготовке и реализации " +
-            "распределения внутренних резервов и ресурсов. Предварительные выводы неутешительны: " +
-            "перспективное планирование не даёт нам иного выбора, кроме определения экономической целесообразности принимаемых решений.",
-    },
-];
-
-function Post() {
+const Post = () => {
+    const [posts, setPosts] = useState<PostType[]>([]);
+    const [error, setError] = useState<string | null>(null);
     const [isTabsVisible, setTabsVisible] = useState(true);
     const [isModalOpen, setModalOpen] = useState(false);
     const [isImageModalOpen, setImageModalOpen] = useState(false);
@@ -48,6 +28,59 @@ function Post() {
     const [activeTab, setActiveTab] = useState<string>("all");
     const { id } = useParams<{ id: string }>();
     const navigate = useNavigate();
+
+    useEffect(() => {
+        const fetchPosts = async () => {
+            try {
+                const token = localStorage.getItem("accessToken");
+                if (!token) {
+                    console.error("Токен отсутствует. Перенаправление на страницу входа.");
+                    navigate("/login");
+                    return;
+                }
+    
+                const response = await axios.get("/api/posts", {
+                    headers: {
+                        Authorization: `Bearer ${token}`,
+                        accept: '*/*'
+                    }
+                });
+    
+                if (response.status === 200) {
+                    processResponseData(response.data);
+                } else {
+                    setError("Ошибка при получении постов");
+                    console.error("Ошибка при получении постов:", response.status);
+                }
+            } catch (error) {
+                setError("Ошибка при получении постов");
+                console.error("Ошибка при получении постов:", error);
+            }
+        };
+
+        const processResponseData = (data: any) => {
+            if (Array.isArray(data)) {
+                setPosts(data);
+            } else if (typeof data === 'object' && data !== null) {
+                if (data.posts && Array.isArray(data.posts)) {
+                    setPosts(data.posts);
+                } else {
+                    setPosts([data]);
+                }
+            } else if (typeof data === 'string') {
+                setError(data);
+                setPosts([]);
+            } else {
+                setError("Неизвестный формат данных");
+                setPosts([]);
+            }
+        };
+
+        fetchPosts();
+    }, [navigate]);
+    
+    
+
     const currentPost = id ? posts.find((p) => p.id === Number(id)) : null;
     const userRole = localStorage.getItem("userRole");
 
@@ -74,10 +107,7 @@ function Post() {
 
     const handleModalClick = (e: React.MouseEvent<HTMLDivElement>) => {
         if (e.target === e.currentTarget) {
-            setModalOpen(false);
-            setImageModalOpen(false);
-            setEditModalOpen(false);
-            setEditImageModalOpen(false);
+            handleCloseModal();
         }
     };
 
@@ -128,6 +158,11 @@ function Post() {
                 <aside className="w-[240px] sticky top-6 self-start">
                     <Sidebarrr onPostsClick={() => setTabsVisible(!isTabsVisible)} />
                 </aside>
+                <div>
+                {error && <p style={{ color: 'red' }}>{error}</p>}
+                {posts.length === 0 && !error && <p>Нет доступных постов.</p>}
+                
+            </div>
                 <main className="w-[768px]">
                     {userRole !== "reader" && isTabsVisible && (
                         <div className="mb-4">
